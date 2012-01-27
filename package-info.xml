@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>Suki:Activity_Bar</id>
+	<name>Activity Bar</name>
+	<version>1.1</version>
+	<type>modification</type>
+	<install for="2.0 - 2.0.99">
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<code>install.php</code>
+		<require-file name="ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
+		<modification>ActivityBar.xml</modification>
+		<modification>Languages.xml</modification>
+		<modification>LanguagesUTF8.xml</modification>
+		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
+	</install>
+	<uninstall for="2.0 - 2.0.99">
+		<readme type="inline">This will uninstall the Activity Bar mod. Thanks for using this mod.</readme>
+		<code>remove.php</code>
+		<remove-file name="$sourcedir/ActivityBar.php" />
+		<modification reverse="true">ActivityBar.xml</modification>
+		<modification reverse="true">Languages.xml</modification>
+		<modification reverse="true">LanguagesUTF8.xml</modification>
+	</uninstall>
+</package-info>
