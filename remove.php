@@ -34,8 +34,9 @@
 
 	if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF')) 
 		require_once(dirname(__FILE__) . '/SSI.php');
+
 	elseif (!defined('SMF'))
-		exit('<b>Error:</b> Cannot remove - please verify you put this in the same place as SMF\'s index.php.');
+		exit('Error Cannot remove - please verify you put this in the same place as SMF\'s index.php.');
 
 	$hooks = array(
 		'integrate_pre_include' => '$sourcedir/ActivityBar.php',
