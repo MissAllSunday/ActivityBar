@@ -10,11 +10,8 @@
 			<search position="replace"><![CDATA[// Is this user the message author?]]></search>
 			<add><![CDATA[
 	// ActivityBar mod
-	if (ActivityBar::getInstance()->setting('enable') && ActivityBar::getInstance()->setting('show_in_posts'))
-	{
 		$output['member']['custom_fields']['-1'] = ActivityBar::getInstance()->activityDisplay($output);
 		ksort($output['member']['custom_fields']);
-	}
 	// ActivityBar mod end
 
 	// Is this user the message author?]]></add>

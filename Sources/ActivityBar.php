@@ -142,6 +142,9 @@ class ActivityBar extends Ohara
 
 	public function activityDisplay($user)
 	{
+		if (!$this->setting('enable') && !$this->setting('show_in_posts'))
+			return false;
+
 		// Get the activity bar
 		$this->activity($user);
 
