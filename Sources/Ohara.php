@@ -63,8 +63,13 @@ class Ohara
 	 */
 	public function installHooks()
 	{
-		foreach ($this->hooks as $hook)
+		foreach ($this->hooks as $hook => $method)
 			add_integration_function($hook, static::$__CLASS__ . '::handleHook', $this->persistHooks);
+	}
+
+	public function getHooks()
+	{
+		return isset(self::$instance->hooks) ? self::$instance->hooks : false;
 	}
 
 	/**
@@ -73,13 +78,14 @@ class Ohara
 	 */
 	public static function handleHook()
 	{
+		$hooks = self::$instance->getHooks();
 		$backtrace = debug_backtrace();
 		$method = NULL;
 		$args = NULL;
 		foreach ($backtrace as $item)
 			if ($item['function'] === 'call_integration_hook')
 			{
-				$method = $item['args'][0];
+				$method = $hooks[$item['args'][0]];
 				$args = !empty($item['args'][1]) ? $item['args'][1] : array();
 				break;
 			}

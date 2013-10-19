@@ -35,9 +35,12 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
+require_once($sourcedir . '/Ohara.php');
+
 class ActivityBar
 {
 	protected static $__CLASS__ = __CLASS__;
+	protected $hooks = array();
 
 	/**
 	 * Setup the object, gather all of the relevant settings
@@ -45,7 +48,8 @@ class ActivityBar
 	protected function __construct()
 	{
 		$this->hooks = array(
-			'integrate_menu_buttons',
+			'integrate_menu_buttons' => 'call',
+			'integrate_general_mod_settings' => 'settings',
 		);
 
 		// Call the helper
