@@ -69,6 +69,17 @@ class ActivityBar extends Ohara
 		$config_vars[] = '';
 	}
 
+	protected function call(&$menu_buttons)
+	{
+		global $context;
+
+		if (isset($context['current_action']) && $context['current_action'] === 'credits')
+			$context['copyrights']['mods'][] = $this->who();
+
+		// Call the css bits
+		$this->css();
+	}
+
 	public function activity($user)
 	{
 		global $smcFunc, $context;
@@ -131,12 +142,12 @@ class ActivityBar extends Ohara
 
 	protected function css()
 	{
-		global $modSettings, $settings;
+		global $settings;
 
 		$return = '';
 
 		/* Only show this stuff if we are on a message page or the profile */
-		if(!empty($modSettings['ActivityBar_enable']) && isset($_REQUEST['topic']) || isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile')
+		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
 			$return = '
 <style type="text/css">
 .activity_holder
@@ -165,9 +176,7 @@ class ActivityBar extends Ohara
 	/* DUH! WINNING! */
 	protected function who()
 	{
-		$MAS = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
-
-		return $MAS;
+		$return '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 	}
 }
 
