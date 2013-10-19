@@ -71,7 +71,7 @@ class ActivityBar extends Ohara
 
 	public function activity($user)
 	{
-		global $modSettings, $smcFunc, $context;
+		global $smcFunc, $context;
 
 		/* No user, no fun */
 		if (empty($user))
@@ -86,13 +86,13 @@ class ActivityBar extends Ohara
 			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
-			$max_width = !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139;
-			$max_posts = !empty($modSettings['ActivityBar_max_posts']) ? $modSettings['ActivityBar_max_posts'] : 500;
-			$days = !empty($modSettings['ActivityBar_timeframe']) ? $modSettings['ActivityBar_timeframe'] : 30;
+			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
+			$max_posts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
+			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
 			$context[$user][self::$className] = array();
 
 			/* Calculate the starting date */
-			$startingdate = time() - ($days * 86400);
+			$startingDate = time() - ($days * 86400);
 
 			/* Get all posts posted since the starting date. */
 			$request = $smcFunc['db_query']('', '
@@ -100,7 +100,7 @@ class ActivityBar extends Ohara
 				FROM {db_prefix}messages
 				WHERE poster_time > {int:startingdate} AND id_member = {int:user}',
 				array(
-					'startingdate' => $startingdate,
+					'startingdate' => $startingDate,
 					'user' => $user,
 				)
 			);
