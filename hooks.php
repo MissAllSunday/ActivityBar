@@ -39,7 +39,7 @@
 
 	$hooks = array(
 		'integrate_pre_include' => '$sourcedir/ActivityBar.php',
-		'integrate_general_mod_settings' => 'Activity_Bar_settings',
+		'integrate_general_mod_settings' => 'ActivityBar_settings',
 	);
 
 	$call = 'add_integration_function';

@@ -38,13 +38,13 @@ function template_activity_profile()
 
 	$template = '';
 
-	if(!empty($modSettings['Activity_Bar_enable']) && !empty($modSettings['Activity_Bar_show_in_profile']) && !empty($context['Activity_Bar']))
+	if(!empty($modSettings['ActivityBar_enable']) && !empty($modSettings['ActivityBar_show_in_profile']) && !empty($context['ActivityBar']))
 		$template .= '
-	<dt>', !empty($modSettings['Activity_Bar_label']) ? $modSettings['Activity_Bar_label'] : $txt['Activity_Bar_standardlabel'], ':</dt>
+	<dt>', !empty($modSettings['ActivityBar_label']) ? $modSettings['ActivityBar_label'] : $txt['ActivityBar_standardlabel'], ':</dt>
 	<dd>
-		<div class="activity_holder" style="width: ', !empty($modSettings['Activity_Bar_max_width']) ? $modSettings['Activity_Bar_max_width'] : 139, 'px;">
-			<div class="activity_bar" style="width: ', $context['Activity_Bar']['width'], 'px;">
-				<div class="activity_percentage smalltext">', $context['Activity_Bar']['percentage'], '%</div>
+		<div class="activity_holder" style="width: ', !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139, 'px;">
+			<div class="ActivityBar" style="width: ', $context['ActivityBar']['width'], 'px;">
+				<div class="activity_percentage smalltext">', $context['ActivityBar']['percentage'], '%</div>
 			</div>
 		</div>
 	</dd>';
@@ -61,12 +61,12 @@ function template_activity_display($message)
 
 	$template = '';
 
-	if(!empty($modSettings['Activity_Bar_enable']) && !empty($modSettings['Activity_Bar_show_in_posts']) && !empty($message['Activity_Bar']))
+	if(!empty($modSettings['ActivityBar_enable']) && !empty($modSettings['ActivityBar_show_in_posts']) && !empty($message['ActivityBar']))
 		$template .='
-	<li class="activity_li">', !empty($modSettings['Activity_Bar_label']) ? $modSettings['Activity_Bar_label'] : $txt['Activity_Bar_standardlabel'], ':
-		<div class="activity_holder" style="width: ', !empty($modSettings['Activity_Bar_max_width']) ? $modSettings['Activity_Bar_max_width'] : 139, 'px;">
-			<div class="activity_bar" style="width: ', $message['Activity_Bar']['width'], 'px;">
-				<div class="activity_percentage">', $message['Activity_Bar']['percentage'], '%</div>
+	<li class="activity_li">', !empty($modSettings['ActivityBar_label']) ? $modSettings['ActivityBar_label'] : $txt['ActivityBar_standardlabel'], ':
+		<div class="activity_holder" style="width: ', !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139, 'px;">
+			<div class="ActivityBar" style="width: ', $message['ActivityBar']['width'], 'px;">
+				<div class="activity_percentage">', $message['ActivityBar']['percentage'], '%</div>
 			</div>
 		</div>
 	</li>';

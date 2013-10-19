@@ -2,7 +2,7 @@
 <!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
 
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
-	<id>Suki:Activity_Bar</id>
+	<id>Suki:ActivityBar</id>
 	<name>Activity Bar</name>
 	<version>1.2</version>
 	<type>modification</type>

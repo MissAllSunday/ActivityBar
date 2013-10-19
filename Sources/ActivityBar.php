@@ -43,14 +43,14 @@ class ActivityBar
 	{
 		global $txt;
 
-		$config_vars[] = $txt['Activity_Bar_title'];
-		$config_vars[] = array('check', 'Activity_Bar_enable');
-		$config_vars[] = array('check', 'Activity_Bar_show_in_posts');
-		$config_vars[] = array('check', 'Activity_Bar_show_in_profile');
-		$config_vars[] = array('text', 'Activity_Bar_label');
-		$config_vars[] = array('int', 'Activity_Bar_timeframe');
-		$config_vars[] = array('int', 'Activity_Bar_max_posts');
-		$config_vars[] = array('int', 'Activity_Bar_max_width');
+		$config_vars[] = $txt['ActivityBar_title'];
+		$config_vars[] = array('check', 'ActivityBar_enable');
+		$config_vars[] = array('check', 'ActivityBar_show_in_posts');
+		$config_vars[] = array('check', 'ActivityBar_show_in_profile');
+		$config_vars[] = array('text', 'ActivityBar_label');
+		$config_vars[] = array('int', 'ActivityBar_timeframe');
+		$config_vars[] = array('int', 'ActivityBar_max_posts');
+		$config_vars[] = array('int', 'ActivityBar_max_width');
 		$config_vars[] = '';
 	}
 
@@ -67,17 +67,17 @@ class ActivityBar
 			$user = (int) $user;
 
 		/* We already have what we need */
-		if ( isset($context[$user]['activity_bar']) && !empty($context[$user]['activity_bar']))
-			return $context[$user]['activity_bar'];
+		if ( isset($context[$user]['ActivityBar']) && !empty($context[$user]['ActivityBar']))
+			return $context[$user]['ActivityBar'];
 
 		/* No? then get it!!! */
 		else
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
-			$max_width = !empty($modSettings['Activity_Bar_max_width']) ? $modSettings['Activity_Bar_max_width'] : 139;
-			$max_posts = !empty($modSettings['Activity_Bar_max_posts']) ? $modSettings['Activity_Bar_max_posts'] : 500;
-			$days = !empty($modSettings['Activity_Bar_timeframe']) ? $modSettings['Activity_Bar_timeframe'] : 30;
-			$context[$user]['activity_bar'] = array();
+			$max_width = !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139;
+			$max_posts = !empty($modSettings['ActivityBar_max_posts']) ? $modSettings['ActivityBar_max_posts'] : 500;
+			$days = !empty($modSettings['ActivityBar_timeframe']) ? $modSettings['ActivityBar_timeframe'] : 30;
+			$context[$user]['ActivityBar'] = array();
 
 			/* Calculate the starting date */
 			$startingdate = time() - ($days * 86400);
@@ -105,13 +105,13 @@ class ActivityBar
 			$bar_width = $max_width * $num_posts;
 
 			/* Store the result in a array. */
-			$context[$user]['activity_bar'] = array(
+			$context[$user]['ActivityBar'] = array(
 				'width' => $bar_width,
 				'percentage' => round($percentage,2),
 			);
 
 			/* There you go. Anything else? */
-			return $context[$user]['activity_bar'];
+			return $context[$user]['ActivityBar'];
 		}
 	}
 
@@ -122,7 +122,7 @@ class ActivityBar
 		$return = '';
 
 		/* Only show this stuff if we are on a message page or the profile */
-		if(!empty($modSettings['Activity_Bar_enable']) && isset($_REQUEST['topic']) || isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile')
+		if(!empty($modSettings['ActivityBar_enable']) && isset($_REQUEST['topic']) || isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile')
 			$return = '
 <style type="text/css">
 .activity_holder
@@ -131,7 +131,7 @@ class ActivityBar
 	border: 1px solid #9BAEBF;
 }
 
-.activity_bar
+.ActivityBar
 {
 	height: 15px;
 	background: url('. $settings['default_theme_url'] .'/images/theme/main_block.png) 90% -200px;

@@ -2,21 +2,21 @@
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-	<id>Suki:Activity_Bar</id>
+	<id>Suki:ActivityBar</id>
 	<version>1.2</version>
 
 	<file name="$sourcedir/Display.php">
 		<operation>
 			<search position="before"><![CDATA['can_see_ip' => allowedTo('moderate_forum') || ($message['id_member'] == $user_info['id'] && !empty($user_info['id'])),]]></search>
 			<add><![CDATA[
-			'Activity_Bar' => Activity_Bar($message['id_member']),]]></add>
+			'ActivityBar' => ActivityBar($message['id_member']),]]></add>
 		</operation>
 	</file>
 
 	<file name="$sourcedir/Profile-View.php">
 		<operation>
 			<search position="before"><![CDATA[	$context['can_view_warning'] = in_array('w', $context['admin_features']) && (allowedTo('issue_warning') && !$context['user']['is_owner']) || (!empty($modSettings['warning_show']) && ($modSettings['warning_show'] > 1 || $context['user']['is_owner']));]]></search>
-			<add><![CDATA[$context['Activity_Bar'] = Activity_Bar($memID);]]></add>
+			<add><![CDATA[$context['ActivityBar'] = ActivityBar($memID);]]></add>
 		</operation>
 	</file>
 
@@ -24,7 +24,7 @@
 	<operation>
 			<search position="replace"><![CDATA['mods' => array(]]></search>
 			<add><![CDATA[		'mods' => array(
-			Activity_Bar_Who(),]]></add>
+			ActivityBar_Who(),]]></add>
 		</operation>
 	</file>
 
@@ -33,7 +33,7 @@
 			<search position="replace"><![CDATA[// This determines the server... not used in many places, except for login fixing.]]></search>
 			<add><![CDATA[
 	/* Activity Bar Mod */
-	$context['html_headers'] .= Activity_Bar_css();
+	$context['html_headers'] .= ActivityBar_css();
 
 	// This determines the server... not used in many places, except for login fixing.]]></add>
 		</operation>
