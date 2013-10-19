@@ -41,7 +41,7 @@
 
 	<file name="$themedir/Profile.template.php">
 		<operation>
-			<search position="after"><![CDATA[	if (!empty($modSettings['userLanguage']) && !empty($context['member']['language']))]]></search>
+			<search position="after"><![CDATA[if (!empty($modSettings['userLanguage']) && !empty($context['member']['language']))]]></search>
 			<add><![CDATA[
 	/* Activity Bar Mod */
 	if(!empty($modSettings['Activity_Bar_enable']) && !empty($modSettings['Activity_Bar_show_in_profile']) && !empty($context['Activity_Bar']))
@@ -55,7 +55,7 @@
 	
 	<file name="$themedir/Display.template.php">
 		<operation>
-			<search position="replace"><![CDATA[			// Is karma display enabled?  Total or +/-?]]></search>
+			<search position="replace"><![CDATA[// Is karma display enabled?  Total or +/-?]]></search>
 			<add><![CDATA[
 			/* Activity Bar Mod */
 			if(!empty($modSettings['Activity_Bar_enable']) && !empty($modSettings['Activity_Bar_show_in_posts']) && !empty($message['Activity_Bar']))

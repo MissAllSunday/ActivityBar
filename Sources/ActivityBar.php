@@ -75,10 +75,10 @@ if (!defined('SMF'))
 			$days = !empty($modSettings['Activity_Bar_timeframe']) ? $modSettings['Activity_Bar_timeframe'] : 30;
 			$context[$user]['activity_bar'] = array();
 
-			/* Calculate the startingdate */
+			/* Calculate the starting date */
 			$startingdate = time() - ($days * 86400);
 
-			/* Get all posts posted since the startingdate. */
+			/* Get all posts posted since the starting date. */
 			$request = $smcFunc['db_query']('', '
 				SELECT poster_time, id_member
 				FROM {db_prefix}messages
@@ -117,7 +117,7 @@ if (!defined('SMF'))
 
 		$return = '';
 
-		/* Only show this sutff if we are on a message page or the profile */
+		/* Only show this stuff if we are on a message page or the profile */
 		if(!empty($modSettings['Activity_Bar_enable']) && isset($_REQUEST['topic']) || isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile')
 			$return = '
 <style type="text/css">
