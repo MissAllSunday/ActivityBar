@@ -142,9 +142,6 @@ class ActivityBar extends Ohara
 
 	public function activityDisplay($user)
 	{
-		if (!$this->setting('enable') && !$this->setting('show_in_posts'))
-			return false;
-
 		// Get the activity bar
 		$this->activity($user);
 
@@ -162,7 +159,7 @@ class ActivityBar extends Ohara
 
 		// Done
 		return array(
-			'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel')),
+			'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'placement' => 0,
 			'output_html' => template_activity_profile(),
 		);
