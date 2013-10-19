@@ -32,7 +32,7 @@
  * Jessica González <missallsunday@simplemachines.org>
  */
 
-function template_activity_profile()
+function template_activity_profile($user)
 {
 	global $modSettings, $context, $txt;
 
