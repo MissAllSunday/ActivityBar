@@ -138,4 +138,32 @@ class Ohara
 		else
 			return false;
 	}
+
+	protected function putInContext($var, $scope = false)
+	{
+
+	}
+
+	protected function getFromContext($var, $scope = false)
+	{
+		global $context;
+
+		// We are getting a context var outside the mod's scope
+		if ($scope && isset($context[$var]) && !empty($context[$var]))
+			return $context[$var];
+
+		// This is a "local" context var
+		elseif (isset($context[static::$__CLASS__][$var]) && !empty($context[static::$__CLASS__][$var]))
+			$context[static::$__CLASS__][$var];
+
+		else
+			return false;
+	}
+
+	protected function getContext()
+	{
+		global $context;
+
+		return $context;
+	}
 }

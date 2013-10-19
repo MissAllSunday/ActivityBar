@@ -9,6 +9,7 @@
 	<install for="2.0 - 2.0.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
+		<require-file name="Sources/Ohara.php" destination="$boarddir">Helper library</require-file>
 		<require-file name="Sources/ActivityBar.php" destination="$boarddir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>

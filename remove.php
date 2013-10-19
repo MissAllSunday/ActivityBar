@@ -40,7 +40,6 @@
 
 	$hooks = array(
 		'integrate_pre_include' => '$sourcedir/ActivityBar.php',
-		'integrate_general_mod_settings' => 'ActivityBar_settings',
 	);
 
 	foreach ($hooks as $hook => $function)
