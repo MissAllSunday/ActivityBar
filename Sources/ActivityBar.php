@@ -94,7 +94,7 @@ class ActivityBar extends Ohara
 
 		/* We already have what we need */
 		if (($context[$user][self::$className] = cache_get_data(self::$className .'_' . $user,
-			30)) == null)
+			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
 			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
@@ -133,7 +133,7 @@ class ActivityBar extends Ohara
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 30);
+			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 120);
 		}
 
 		/* There you go. Anything else? */

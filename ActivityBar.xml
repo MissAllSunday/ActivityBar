@@ -37,4 +37,17 @@
 	// OAward mod end]]></add>
 		</operation>
 	</file>
+
+	<file name="$sourcedir/Subs-Post.php">
+		<operation>
+			<search position="replace"><![CDATA[updateMemberData($posterOptions['id'], array('posts' => '+'));]]></search>
+			<add><![CDATA[updateMemberData($posterOptions['id'], array('posts' => '+'));
+
+		// ActivityBar mod
+		if (ActivityBar::getInstance()->setting('enable'))
+			cache_put_data('ActivityBar_' . $user_info['id'], null, 30);
+		// ActivityBar mod end
+]]></add>
+		</operation>
+	</file>
 </modification>
