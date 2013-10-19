@@ -64,7 +64,7 @@ class Ohara
 	public function installHooks()
 	{
 		foreach ($this->hooks as $hook => $method)
-			add_integration_function($hook, static::$__CLASS__ . '::handleHook', $this->persistHooks);
+			add_integration_function($hook, static::$className . '::handleHook', $this->persistHooks);
 	}
 
 	public function getHooks()
@@ -103,11 +103,11 @@ class Ohara
 	 */
 	public static function getInstance()
 	{
-		if (!isset(static::$__CLASS__))
-			trigger_error('<strong>protected static $__CLASS__ = __CLASS__;</strong> must be contained in child class', E_USER_ERROR);
+		if (!isset(static::$className))
+			trigger_error('<strong>protected static $className = __CLASS__;</strong> must be contained in child class', E_USER_ERROR);
 
-		if (!isset(self::$instance) || !(self::$instance instanceof static::$__CLASS__))
-			self::$instance = new static::$__CLASS__();
+		if (!isset(self::$instance) || !(self::$instance instanceof static::$className))
+			self::$instance = new static::$className();
 
 		return self::$instance;
 	}
@@ -119,10 +119,10 @@ class Ohara
 		if (empty($string))
 			return false;
 
-		loadLanguage(static::$__CLASS__);
+		loadLanguage(static::$className);
 
-		if (!empty($txt[static::$__CLASS__ .'_'. $string]))
-			return $txt[static::$__CLASS__ .'_'. $string];
+		if (!empty($txt[static::$className .'_'. $string]))
+			return $txt[static::$className .'_'. $string];
 
 		else
 		return false;
@@ -132,8 +132,8 @@ class Ohara
 	{
 		global $modSettings;
 
-		if (!empty($modSettings[static::$__CLASS__ .'_'. $var]))
-			return $modSettings[static::$__CLASS__ .'_'. $var];
+		if (!empty($modSettings[static::$className .'_'. $var]))
+			return $modSettings[static::$className .'_'. $var];
 
 		else
 			return false;
@@ -153,8 +153,8 @@ class Ohara
 			return $context[$var];
 
 		// This is a "local" context var
-		elseif (isset($context[static::$__CLASS__][$var]) && !empty($context[static::$__CLASS__][$var]))
-			$context[static::$__CLASS__][$var];
+		elseif (isset($context[static::$className][$var]) && !empty($context[static::$className][$var]))
+			$context[static::$className][$var];
 
 		else
 			return false;

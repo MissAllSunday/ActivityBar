@@ -39,7 +39,7 @@ require_once($sourcedir . '/Ohara.php');
 
 class ActivityBar
 {
-	protected static $__CLASS__ = __CLASS__;
+	protected static $className = __CLASS__;
 	protected $hooks = array();
 
 	/**
@@ -56,18 +56,16 @@ class ActivityBar
 		parent::__construct();
 	}
 
-	public static function settings(&$config_vars)
+	protected function settings(&$config_vars)
 	{
-		global $txt;
-
-		$config_vars[] = $txt['_title'];
-		$config_vars[] = array('check', 'ActivityBar_enable');
-		$config_vars[] = array('check', 'ActivityBar_show_in_posts');
-		$config_vars[] = array('check', 'ActivityBar_show_in_profile');
-		$config_vars[] = array('text', 'ActivityBar_label');
-		$config_vars[] = array('int', 'ActivityBar_timeframe');
-		$config_vars[] = array('int', 'ActivityBar_max_posts');
-		$config_vars[] = array('int', 'ActivityBar_max_width');
+		$config_vars[] = $this->text('title');
+		$config_vars[] = array('check', self::$className .'_enable');
+		$config_vars[] = array('check', self::$className .'_show_in_posts');
+		$config_vars[] = array('check', self::$className .'_show_in_profile');
+		$config_vars[] = array('text', self::$className .'_label');
+		$config_vars[] = array('int', self::$className .'_timeframe');
+		$config_vars[] = array('int', self::$className .'_max_posts');
+		$config_vars[] = array('int', self::$className .'_max_width');
 		$config_vars[] = '';
 	}
 
@@ -132,7 +130,7 @@ class ActivityBar
 		}
 	}
 
-	public static function css()
+	protected function css()
 	{
 		global $modSettings, $settings;
 
@@ -166,7 +164,7 @@ class ActivityBar
 	}
 
 	/* DUH! WINNING! */
-	public static function who()
+	protected function who()
 	{
 		$MAS = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 
