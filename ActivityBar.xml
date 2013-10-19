@@ -19,23 +19,4 @@
 			<add><![CDATA[$context['ActivityBar'] = ActivityBar($memID);]]></add>
 		</operation>
 	</file>
-
-	<file name="$sourcedir/Who.php">
-	<operation>
-			<search position="replace"><![CDATA['mods' => array(]]></search>
-			<add><![CDATA[		'mods' => array(
-			ActivityBar_Who(),]]></add>
-		</operation>
-	</file>
-
-	<file name="$sourcedir/Load.php">
-	<operation>
-			<search position="replace"><![CDATA[// This determines the server... not used in many places, except for login fixing.]]></search>
-			<add><![CDATA[
-	/* Activity Bar Mod */
-	$context['html_headers'] .= ActivityBar_css();
-
-	// This determines the server... not used in many places, except for login fixing.]]></add>
-		</operation>
-	</file>
 </modification>

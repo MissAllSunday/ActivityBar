@@ -77,7 +77,7 @@ class ActivityBar extends Ohara
 			$context['copyrights']['mods'][] = $this->who();
 
 		// Call the css bits
-		$this->css();
+		$context['html_headers'] .= $this->css();
 	}
 
 	public function activity($user)
@@ -148,7 +148,7 @@ class ActivityBar extends Ohara
 
 		/* Only show this stuff if we are on a message page or the profile */
 		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
-			$return = '
+			$return .= '
 <style type="text/css">
 .activity_holder
 {
