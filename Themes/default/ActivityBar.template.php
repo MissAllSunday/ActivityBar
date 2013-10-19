@@ -34,20 +34,22 @@
 
 function template_activity_profile($user)
 {
-	global $modSettings, $context, $txt;
+	global $context, $txt, $modSettings;
+
+	if (empty($user) || empty($context[$user]['ActivityBar']))
+		return false;
 
 	$template = '';
+	$bar = $context[$user]['ActivityBar'];
 
-	if(!empty($modSettings['ActivityBar_enable']) && !empty($modSettings['ActivityBar_show_in_profile']) && !empty($context['ActivityBar']))
-		$template .= '
-	<dt>'. !empty($modSettings['ActivityBar_label']) ? $modSettings['ActivityBar_label'] : $txt['ActivityBar_standardlabel'] .':</dt>
-	<dd>
-		<div class="activity_holder" style="width: '. !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139 .'px;">
-			<div class="ActivityBar" style="width: '. $context['ActivityBar']['width'] .'px;">
-				<div class="activity_percentage smalltext">'. $context['ActivityBar']['percentage'] .'%</div>
+	$template .='
+		<div class="activity_div">
+			<div class="activity_holder" style="width: '. (!empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139) .'px;">
+				<div class="ActivityBar" style="width: '. $bar['width'] .'px;">
+					<div class="activity_percentage">'. $bar['percentage'] .'%</div>
+				</div>
 			</div>
-		</div>
-	</dd>';
+		</div>';
 
 	return $template;
 }

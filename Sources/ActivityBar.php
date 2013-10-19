@@ -145,6 +145,8 @@ class ActivityBar extends Ohara
 		// Get the activity bar
 		$this->activity($user);
 
+		loadTemplate(self::$className);
+
 		// Done
 		return array(
 			'placement' => 1,
@@ -157,11 +159,13 @@ class ActivityBar extends Ohara
 		// Get the activity bar
 		$this->activity($user);
 
+		loadTemplate(self::$className);
+
 		// Done
 		return array(
 			'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'placement' => 0,
-			'output_html' => template_activity_profile(),
+			'output_html' => template_activity_profile($user),
 		);
 	}
 
@@ -174,7 +178,6 @@ class ActivityBar extends Ohara
 		/* Only show this stuff if we are on a message page or the profile */
 		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
 		{
-			loadTemplate(self::$className);
 			loadLanguage(self::$className);
 
 			$return .= '
