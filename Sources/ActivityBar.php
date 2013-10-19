@@ -176,7 +176,7 @@ class ActivityBar extends Ohara
 	/* DUH! WINNING! */
 	protected function who()
 	{
-		$return '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
+		return '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 	}
 }
 
