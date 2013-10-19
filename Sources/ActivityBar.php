@@ -94,7 +94,7 @@ class ActivityBar extends Ohara
 
 		/* We already have what we need */
 		if (($context[$user][self::$className] = cache_get_data(self::$className .'_' . $user,
-			120)) == null)
+			30)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
 			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
@@ -133,11 +133,23 @@ class ActivityBar extends Ohara
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 120);
+			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 30);
 		}
 
 		/* There you go. Anything else? */
 		return $context[$user][self::$className];
+	}
+
+	public function activityDisplay($user)
+	{
+		// Get the activity bar
+		$this->activity($user);
+
+		// Done
+		return array(
+			'placement' => 1,
+			'value' =>  template_activity_display($user),
+		);
 	}
 
 	protected function css()
@@ -148,6 +160,10 @@ class ActivityBar extends Ohara
 
 		/* Only show this stuff if we are on a message page or the profile */
 		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
+		{
+			loadTemplate(self::$className);
+			loadLanguage(self::$className);
+
 			$return .= '
 <style type="text/css">
 .activity_holder
@@ -170,6 +186,7 @@ class ActivityBar extends Ohara
 }
 </style>
 ';
+	}
 		return $return;
 	}
 

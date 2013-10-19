@@ -112,7 +112,7 @@ class Ohara
 		return self::$instance;
 	}
 
-	protected function text($string)
+	public function text($string)
 	{
 		global $txt;
 
@@ -128,7 +128,7 @@ class Ohara
 		return false;
 	}
 
-	protected function setting($var)
+	public function setting($var)
 	{
 		global $modSettings;
 
@@ -139,12 +139,12 @@ class Ohara
 			return false;
 	}
 
-	protected function putInContext($var, $scope = false)
+	public function putInContext($var, $scope = false)
 	{
 
 	}
 
-	protected function getFromContext($var, $scope = false)
+	public function getFromContext($var, $scope = false)
 	{
 		global $context;
 
@@ -160,7 +160,7 @@ class Ohara
 			return false;
 	}
 
-	protected function getContext()
+	public function getContext()
 	{
 		global $context;
 
