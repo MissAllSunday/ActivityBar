@@ -37,13 +37,26 @@ if (!defined('SMF'))
 
 class ActivityBar
 {
-	public $name = 'ActivityBar';
+	protected static $__CLASS__ = __CLASS__;
+
+	/**
+	 * Setup the object, gather all of the relevant settings
+	 */
+	protected function __construct()
+	{
+		$this->hooks = array(
+			'integrate_menu_buttons',
+		);
+
+		// Call the helper
+		parent::__construct();
+	}
 
 	public static function settings(&$config_vars)
 	{
 		global $txt;
 
-		$config_vars[] = $txt['ActivityBar_title'];
+		$config_vars[] = $txt['_title'];
 		$config_vars[] = array('check', 'ActivityBar_enable');
 		$config_vars[] = array('check', 'ActivityBar_show_in_posts');
 		$config_vars[] = array('check', 'ActivityBar_show_in_profile');
@@ -156,3 +169,5 @@ class ActivityBar
 		return $MAS;
 	}
 }
+
+ActivityBar::getInstance();
