@@ -82,17 +82,14 @@ class ActivityBar extends Ohara
 			$user = (int) $user;
 
 		/* We already have what we need */
-		if ( isset($context[$user]['ActivityBar']) && !empty($context[$user]['ActivityBar']))
-			return $context[$user]['ActivityBar'];
-
-		/* No? then get it!!! */
-		else
+		if (($context[$user][self::$className] = cache_get_data(self::$className .'_' . $user,
+			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
 			$max_width = !empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139;
 			$max_posts = !empty($modSettings['ActivityBar_max_posts']) ? $modSettings['ActivityBar_max_posts'] : 500;
 			$days = !empty($modSettings['ActivityBar_timeframe']) ? $modSettings['ActivityBar_timeframe'] : 30;
-			$context[$user]['ActivityBar'] = array();
+			$context[$user][self::$className] = array();
 
 			/* Calculate the starting date */
 			$startingdate = time() - ($days * 86400);
@@ -120,14 +117,16 @@ class ActivityBar extends Ohara
 			$bar_width = $max_width * $num_posts;
 
 			/* Store the result in a array. */
-			$context[$user]['ActivityBar'] = array(
+			$context[$user][self::$className] = array(
 				'width' => $bar_width,
 				'percentage' => round($percentage,2),
 			);
 
-			/* There you go. Anything else? */
-			return $context[$user]['ActivityBar'];
+			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 120);
 		}
+
+		/* There you go. Anything else? */
+		return $context[$user][self::$className];
 	}
 
 	protected function css()
