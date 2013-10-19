@@ -21,10 +21,20 @@
 		</operation>
 	</file>
 
-	<file name="$sourcedir/Profile-View.php">
+	<file name="$sourcedir/Profile.php">
 		<operation>
-			<search position="before"><![CDATA[	$context['can_view_warning'] = in_array('w', $context['admin_features']) && (allowedTo('issue_warning') && !$context['user']['is_owner']) || (!empty($modSettings['warning_show']) && ($modSettings['warning_show'] > 1 || $context['user']['is_owner']));]]></search>
-			<add><![CDATA[$context['ActivityBar'] = ActivityBar::getInstance()->activity($memID);]]></add>
+			<search position="replace"><![CDATA['value' => $value,
+		);
+	}
+	$smcFunc['db_free_result']($request);]]></search>
+			<add><![CDATA['value' => $value,
+		);
+	}
+	$smcFunc['db_free_result']($request);
+
+	// Oaward mod
+	$context['custom_fields']['-1'] = ActivityBar::getInstance()->activityProfile($output)($memID);
+	// OAward mod end]]></add>
 		</operation>
 	</file>
 </modification>
