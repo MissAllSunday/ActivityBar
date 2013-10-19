@@ -37,7 +37,7 @@ if (!defined('SMF'))
 
 require_once($sourcedir . '/Ohara.php');
 
-class ActivityBar
+class ActivityBar extends Ohara
 {
 	protected static $className = __CLASS__;
 	protected $hooks = array();
@@ -59,13 +59,13 @@ class ActivityBar
 	protected function settings(&$config_vars)
 	{
 		$config_vars[] = $this->text('title');
-		$config_vars[] = array('check', self::$className .'_enable');
-		$config_vars[] = array('check', self::$className .'_show_in_posts');
-		$config_vars[] = array('check', self::$className .'_show_in_profile');
-		$config_vars[] = array('text', self::$className .'_label');
-		$config_vars[] = array('int', self::$className .'_timeframe');
-		$config_vars[] = array('int', self::$className .'_max_posts');
-		$config_vars[] = array('int', self::$className .'_max_width');
+		$config_vars[] = array('check', self::$className .'_enable', 'subtext' => $this->text('title_sub'));
+		$config_vars[] = array('check', self::$className .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
+		$config_vars[] = array('check', self::$className .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
+		$config_vars[] = array('text', self::$className .'_label', 'subtext' => $this->text('label_sub'));
+		$config_vars[] = array('int', self::$className .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
+		$config_vars[] = array('int', self::$className .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
+		$config_vars[] = array('int', self::$className .'_max_width', 'subtext' => $this->text('width_sub'));
 		$config_vars[] = '';
 	}
 
