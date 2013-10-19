@@ -33,9 +33,13 @@
  */
 
 if (!defined('SMF'))
-	die('Hacking attempt...');
+	die('No direct access...');
 
-	function Activity_Bar_settings(&$config_vars)
+class ActivityBar
+{
+	public $name = 'ActivityBar';
+
+	public static function settings(&$config_vars)
 	{
 		global $txt;
 
@@ -50,7 +54,7 @@ if (!defined('SMF'))
 		$config_vars[] = '';
 	}
 
-	function Activity_Bar($user)
+	public function activity($user)
 	{
 		global $modSettings, $smcFunc, $context;
 
@@ -111,7 +115,7 @@ if (!defined('SMF'))
 		}
 	}
 
-	function Activity_Bar_css()
+	public static function css()
 	{
 		global $modSettings, $settings;
 
@@ -145,9 +149,10 @@ if (!defined('SMF'))
 	}
 
 	/* DUH! WINNING! */
-	function Activity_Bar_Who()
+	public static function who()
 	{
 		$MAS = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 
 		return $MAS;
 	}
+}
