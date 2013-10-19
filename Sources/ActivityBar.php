@@ -2,7 +2,7 @@
 
 /**
  * @package Activity Bar mod
- * @version 1.1
+ * @version 1.2
  * @author Jessica González <missallsunday@simplemachines.org>
  * @copyright Copyright (c) 2011, Jessica González
  * @license http://www.mozilla.org/MPL/MPL-1.1.html

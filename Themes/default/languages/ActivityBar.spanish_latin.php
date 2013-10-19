@@ -16,4 +16,3 @@ $txt['Activity_Bar_max_posts'] = 'M&aacute;xima cantidad de mensajes';
 $txt['Activity_Bar_max_posts_sub'] = 'Es el n&uacute;mro de mensajes que se requieren para llebar la barra. <br />D&eacute;jalo vacio para usar el valor por default (500 mensajes).';
 $txt['Activity_Bar_max_width'] = 'Anchura m&aacute;xima de la barra';
 $txt['Activity_Bar_max_width_sub'] = 'En pixels. D&eacute;jalo vacio para usar el valor por default (139px).';
-
