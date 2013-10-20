@@ -1,0 +1,12 @@
+{
+	"name": "Suki/ActivityBar",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/MissAllSunday/Ohara"
+		}
+	],
+	"require": {
+		"Suki/Ohara": "dev-master"
+	}
+}
