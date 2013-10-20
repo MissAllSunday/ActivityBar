@@ -10,4 +10,4 @@ $txt['ActivityBar_timeframe'] = 'Activity Timeframe <div class="smalltext">The m
 $txt['ActivityBar_show_in_posts'] = 'Display the activity bar in posts';
 $txt['ActivityBar_show_in_profile'] = 'Display the activity bar in profiles';
 $txt['ActivityBar_max_posts'] = 'Max posts <div class="smalltext">Number of posts required in order to fill the bar. <br />Leave empty for defaults (500 posts).</div>';
-$txt['ActivityBar_max_width'] = 'Max width  <div class="smalltext">The width of the bar. When the post limit set above is reached, the bar will have this width. <br />In pixels. Leave empty for defaults (139px).</div>';
+$txt['ActivityBar_max_width'] = 'Max width  <div class="smalltext">Bar width. When the post limit set above is reached, the bar will have this width. <br />In pixels. Leave empty for defaults (139px).</div>';
