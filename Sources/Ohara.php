@@ -3,7 +3,7 @@
 /**
  * @package Ohara helper class mod
  * @version 1.0
- * @author Jessica González <missallsunday@simplemachines.org>
+ * @author Jessica González <suki@missallsunday.com>
  * @copyright Copyright (c) 2013, Jessica González
  * @license http://www.mozilla.org/MPL/MPL-1.1.html
  */
@@ -29,7 +29,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
- * Jessica González <missallsunday@simplemachines.org>
+ * Jessica González <suki@missallsunday.com>
  */
 
 class Ohara
