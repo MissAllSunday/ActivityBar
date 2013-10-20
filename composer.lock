@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "a7fcb98314c620d74ab259014caff6ff",
+    "packages": [
+        {
+            "name": "Suki/Ohara",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MissAllSunday/Ohara",
+                "reference": "e11ceb2f037dfba9c5c41d2959f3c739c6347da1"
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "license": [
+                "MPL-1.1"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Zuba",
+                    "homepage": "http://mattzuba.com/"
+                },
+                {
+                    "name": "Suki",
+                    "homepage": "http://missallsunday.com"
+                }
+            ],
+            "description": "Helper class for SMF",
+            "homepage": "https://github.com/MissAllSunday/Ohara",
+            "time": "2013-10-20 14:58:52"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "suki/ohara": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

@@ -34,3 +34,7 @@ Icon?
 Thumbs.db
 *.lnk
 *.bat
+
+# Composer files #
+######################
+vendor/composer/*
