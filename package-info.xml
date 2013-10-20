@@ -9,6 +9,7 @@
 	<install for="2.0 - 2.0.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
+		<modification>ActivityBar.xml</modification>
 		<require-file name="Sources/Ohara.php" destination="$sourcedir">Helper library</require-file>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
@@ -18,6 +19,7 @@
 	<uninstall for="2.0 - 2.0.99">
 		<readme type="inline">This will uninstall the Activity Bar mod. Thanks for using this mod.</readme>
 		<code>remove.php</code>
+		<modification reverse="true">ActivityBar.xml</modification>
 		<remove-file name="$sourcedir/ActivityBar.php" />
 		<remove-file name="$themedir/ActivityBar.template.php" />
 		<remove-file name="$languagedir/ActivityBar.english.php" />

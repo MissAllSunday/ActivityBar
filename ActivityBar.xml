@@ -10,9 +10,9 @@
 			<search position="replace"><![CDATA[// Is this user the message author?]]></search>
 			<add><![CDATA[
 	// ActivityBar mod
-	if (ActivityBar::getInstance()->setting('enable') && ActivityBar::getInstance()->setting('show_in_posts'))
+	if (ActivityBar::run()->setting('enable') && ActivityBar::run()->setting('show_in_posts'))
 	{
-		$output['member']['custom_fields']['-1'] = ActivityBar::getInstance()->activityDisplay($output['member']['id']);
+		$output['member']['custom_fields']['-1'] = ActivityBar::run()->activityDisplay($output['member']['id']);
 		ksort($output['member']['custom_fields']);
 	}
 	// ActivityBar mod end
@@ -33,8 +33,8 @@
 	$smcFunc['db_free_result']($request);
 
 	// ActivityBar mod
-	if (ActivityBar::getInstance()->setting('enable') && ActivityBar::getInstance()->setting('show_in_profile'))
-		$context['custom_fields']['-1'] = ActivityBar::getInstance()->activityProfile($memID);
+	if (ActivityBar::run()->setting('enable') && ActivityBar::run()->setting('show_in_profile'))
+		$context['custom_fields']['-1'] = ActivityBar::run()->activityProfile($memID);
 	// ActivityBar mod end
 ]]></add>
 		</operation>
@@ -46,7 +46,7 @@
 			<add><![CDATA[updateMemberData($posterOptions['id'], array('posts' => '+'));
 
 		// ActivityBar mod
-		if (ActivityBar::getInstance()->setting('enable'))
+		if (ActivityBar::run()->setting('enable'))
 			cache_put_data('ActivityBar_' . $user_info['id'], null, 30);
 		// ActivityBar mod end
 ]]></add>

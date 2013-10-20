@@ -214,4 +214,4 @@ class ActivityBar extends Ohara
 	}
 }
 
-ActivityBar::getInstance();
+ActivityBar::run();

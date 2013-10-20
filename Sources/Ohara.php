@@ -99,9 +99,9 @@ class Ohara
 	/**
 	 * Let's try the singleton method
 	 *
-	 * @return void
+	 * @return object
 	 */
-	public static function getInstance()
+	public static function run()
 	{
 		if (!isset(static::$className))
 			trigger_error('<strong>protected static $className = __CLASS__;</strong> must be contained in child class', E_USER_ERROR);

@@ -40,6 +40,16 @@ This information is then used to create the bar.
 
 [color=purple][b][size=12pt]Changelog[/size][/b][/color]
 
+1.2 October 2013
+- Changed folder structure.
+- Removed all template edits.
+- Re-wrote all language strings.
+- Increase readability for Spanish users.
+- Added cache and the ability to clean it whenever a post count increases.
+- Re-wrote all source code into a single class.
+- Now has its own template file and both the display and the profile HTML are separated into their own functions.
+- Uses the custom profile field system to avoid template edits.
+
 1.1 January 2012
 -Added compatibility for 2.0.x
 -Removed compatibility for 1.1.x
