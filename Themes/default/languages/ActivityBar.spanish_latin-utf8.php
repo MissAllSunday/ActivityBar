@@ -2,10 +2,6 @@
 
 global $txt;
 
-<?php
-
-global $txt;
-
 $txt['ActivityBar_title'] = 'Activity Bar';
 $txt['ActivityBar_standardlabel'] = 'Actividad';
 $txt['ActivityBar_enable'] = 'Activar la barra de actividad';
