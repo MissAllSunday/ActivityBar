@@ -156,17 +156,21 @@ class ActivityBar extends Ohara
 
 	public function activityProfile($user)
 	{
+		global $context;
+
 		// Get the activity bar
 		$this->activity($user);
 
 		loadTemplate(self::$className);
 
-		// Done
-		return array(
-			'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
-			'placement' => 0,
-			'output_html' => template_activity_profile($user),
-		);
+		// Only show this on the summary page.
+		if (empty($_REQUEST['area']))
+			$context['custom_fields']['-1'] = array(
+				'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+				'placement' => 0,
+				'output_html' => template_activity_profile($user),
+				'show_reg' => false,
+			);
 	}
 
 	protected function css()

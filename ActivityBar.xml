@@ -34,7 +34,7 @@
 
 	// ActivityBar mod
 	if (ActivityBar::run()->setting('enable') && ActivityBar::run()->setting('show_in_profile'))
-		$context['custom_fields']['-1'] = ActivityBar::run()->activityProfile($memID);
+		ActivityBar::run()->activityProfile($memID);
 	// ActivityBar mod end
 ]]></add>
 		</operation>
