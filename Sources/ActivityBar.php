@@ -35,37 +35,29 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-require_once($sourcedir . '/Ohara.php');
-
-class ActivityBar extends Ohara
+class ActivityBar
 {
-	protected static $className = __CLASS__;
-	protected $hooks = array();
+	protected $_className;
 
 	/**
-	 * Setup the object, gather all of the relevant settings
+	 * Setup
 	 */
 	protected function __construct()
 	{
-		$this->hooks = array(
-			'integrate_menu_buttons' => 'call',
-			'integrate_general_mod_settings' => 'settings',
-		);
-
-		// Call the helper
-		parent::__construct();
+		// /me no like constants, dunno why...  lets use a useless wrapper instead!
+		$this->_className = __CLASS__;
 	}
 
 	protected function settings(&$config_vars)
 	{
 		$config_vars[] = $this->text('title');
-		$config_vars[] = array('check', self::$className .'_enable', 'subtext' => $this->text('enable_sub'));
-		$config_vars[] = array('check', self::$className .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
-		$config_vars[] = array('check', self::$className .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
-		$config_vars[] = array('text', self::$className .'_label', 'subtext' => $this->text('label_sub'));
-		$config_vars[] = array('int', self::$className .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
-		$config_vars[] = array('int', self::$className .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
-		$config_vars[] = array('int', self::$className .'_max_width', 'subtext' => $this->text('max_width_sub'));
+		$config_vars[] = array('check', $this->_className .'_enable', 'subtext' => $this->text('enable_sub'));
+		$config_vars[] = array('check', $this->_className .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
+		$config_vars[] = array('check', $this->_className .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
+		$config_vars[] = array('text', $this->_className .'_label', 'subtext' => $this->text('label_sub'));
+		$config_vars[] = array('int', $this->_className .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
+		$config_vars[] = array('int', $this->_className .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
+		$config_vars[] = array('int', $this->_className .'_max_width', 'subtext' => $this->text('max_width_sub'));
 		$config_vars[] = '';
 	}
 
@@ -80,27 +72,23 @@ class ActivityBar extends Ohara
 		$context['html_headers'] .= $this->css();
 	}
 
-	public function activity($user)
+	public function create(&$user, $display_custom_fields)
 	{
 		global $smcFunc, $context;
 
-		/* No user, no fun */
-		if (empty($user))
+		// If we aren't loading any custom profile field, don't bother.
+		if (empty($display_custom_fields))
 			return false;
 
-		/* Safety first! */
-		else
-			$user = (int) $user;
-
 		/* We already have what we need */
-		if (($context[$user][self::$className] = cache_get_data(self::$className .'_' . $user,
+		if (($context[$this->_className][$user] = cache_get_data($this->_className .'_' . $user,
 			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
 			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
 			$max_posts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
 			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
-			$context[$user][self::$className] = array();
+			$context[$this->_className][$user] = array();
 
 			/* Calculate the starting date */
 			$startingDate = time() - ($days * 86400);
@@ -128,16 +116,16 @@ class ActivityBar extends Ohara
 			$bar_width = $max_width * $num_posts;
 
 			/* Store the result in a array. */
-			$context[$user][self::$className] = array(
+			$context[$this->_className][$user] = array(
 				'width' => $bar_width,
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data(self::$className .'_' . $user, $context[$user][self::$className], 120);
+			cache_put_data($this->_className .'_' . $user, $context[$this->_className][$user], 120);
 		}
 
 		/* There you go. Anything else? */
-		return $context[$user][self::$className];
+		return $context[$this->_className][$user];
 	}
 
 	public function activityDisplay($user)
@@ -145,7 +133,7 @@ class ActivityBar extends Ohara
 		// Get the activity bar
 		$this->activity($user);
 
-		loadTemplate(self::$className);
+		loadTemplate($this->_className);
 
 		// Done
 		return array(
@@ -161,7 +149,7 @@ class ActivityBar extends Ohara
 		// Get the activity bar
 		$this->activity($user);
 
-		loadTemplate(self::$className);
+		loadTemplate($this->_className);
 
 		// Only show this on the summary page.
 		if (empty($_REQUEST['area']))
@@ -182,7 +170,7 @@ class ActivityBar extends Ohara
 		/* Only show this stuff if we are on a message page or the profile */
 		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
 		{
-			loadLanguage(self::$className);
+			loadLanguage($this->_className);
 
 			$return .= '
 <style type="text/css">
