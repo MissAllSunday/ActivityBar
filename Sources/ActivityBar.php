@@ -3,8 +3,8 @@
 /**
  * @package Activity Bar mod
  * @version 1.2
- * @author Jessica Gonz·lez <suki@missallsunday.com>
- * @copyright Copyright (c) 2013, Jessica Gonz·lez
+ * @author Jessica Gonz√°lez <suki@missallsunday.com>
+ * @copyright Copyright (c) 2013, Jessica Gonz√°lez
  * @license http://www.mozilla.org/MPL/MPL-1.1.html
  */
 
@@ -29,7 +29,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
- * Jessica Gonz·lez <suki@missallsunday.com>
+ * Jessica Gonz√°lez <suki@missallsunday.com>
  */
 
 if (!defined('SMF'))
@@ -75,10 +75,24 @@ class ActivityBar extends Ohara
 
 	public function show(&$data, $user, $display_custom_fields)
 	{
+		// Mod is disabled.
+		if(!$this->setting('enable'))
+			return;
+
 		// If we aren't loading any custom profile field, don't bother.
 		if (empty($display_custom_fields))
 			return;
 
+		// Get this user's activity.
+		$activity = $this->create($user);
+
+		// Append the data.
+		$data['custom_fields'][] = array(
+			'title' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+			'value' => template_activity_display($activity),
+			'placement' => !empty($custom['placement']) ? $custom['placement'] : 0,
+		);
 	}
 
 	public function create($user)
@@ -220,5 +234,3 @@ class ActivityBar extends Ohara
 		return '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 	}
 }
-
-ActivityBar::run();
