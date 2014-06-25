@@ -35,9 +35,9 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-class ActivityBar
+class ActivityBar extends Ohara
 {
-	protected $_className;
+	protected static $name = __CLASS__;
 	protected static $_activity = array();
 
 	/**
@@ -45,20 +45,20 @@ class ActivityBar
 	 */
 	protected function __construct()
 	{
-		// /me no like constants, dunno why...  lets use a useless wrapper instead!
-		$this->_className = __CLASS__;
+		// Call the helper.
+		parent::__construct();
 	}
 
 	protected function settings(&$config_vars)
 	{
 		$config_vars[] = $this->text('title');
-		$config_vars[] = array('check', $this->_className .'_enable', 'subtext' => $this->text('enable_sub'));
-		$config_vars[] = array('check', $this->_className .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
-		$config_vars[] = array('check', $this->_className .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
-		$config_vars[] = array('text', $this->_className .'_label', 'subtext' => $this->text('label_sub'));
-		$config_vars[] = array('int', $this->_className .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
-		$config_vars[] = array('int', $this->_className .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
-		$config_vars[] = array('int', $this->_className .'_max_width', 'subtext' => $this->text('max_width_sub'));
+		$config_vars[] = array('check', self::$name .'_enable', 'subtext' => $this->text('enable_sub'));
+		$config_vars[] = array('check', self::$name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
+		$config_vars[] = array('check', self::$name .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
+		$config_vars[] = array('text', self::$name .'_label', 'subtext' => $this->text('label_sub'));
+		$config_vars[] = array('int', self::$name .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
+		$config_vars[] = array('int', self::$name .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
+		$config_vars[] = array('int', self::$name .'_max_width', 'subtext' => $this->text('max_width_sub'));
 		$config_vars[] = '';
 	}
 
@@ -75,6 +75,9 @@ class ActivityBar
 
 	public function show(&$data, $user, $display_custom_fields)
 	{
+		// If we aren't loading any custom profile field, don't bother.
+		if (empty($display_custom_fields))
+			return;
 
 	}
 
@@ -93,7 +96,7 @@ class ActivityBar
 		if (!empty(self::$_activity[$user]))
 			return self::$_activity[$user];
 
-		if ((self::$_activity[$user] = cache_get_data($this->_className .'_' . $user,
+		if ((self::$_activity[$user] = cache_get_data(self::$name .'_' . $user,
 			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
@@ -133,7 +136,7 @@ class ActivityBar
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data($this->_className .'_' . $user, self::$_activity[$user], 120);
+			cache_put_data(self::$name .'_' . $user, self::$_activity[$user], 120);
 		}
 
 		/* There you go. Anything else? */
@@ -145,7 +148,7 @@ class ActivityBar
 		// Get the activity bar
 		$this->activity($user);
 
-		loadTemplate($this->_className);
+		loadTemplate(self::$name);
 
 		// Done
 		return array(
@@ -161,7 +164,7 @@ class ActivityBar
 		// Get the activity bar
 		$this->activity($user);
 
-		loadTemplate($this->_className);
+		loadTemplate(self::$name);
 
 		// Only show this on the summary page.
 		if (empty($_REQUEST['area']))
@@ -182,7 +185,7 @@ class ActivityBar
 		/* Only show this stuff if we are on a message page or the profile */
 		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
 		{
-			loadLanguage($this->_className);
+			loadLanguage(self::$name);
 
 			$return .= '
 <style type="text/css">
