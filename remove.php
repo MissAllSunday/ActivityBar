@@ -39,8 +39,11 @@
 		exit('Error Cannot remove - please verify you put this in the same place as SMF\'s index.php.');
 
 	$hooks = array(
-		'integrate_pre_include' => '$sourcedir/ActivityBar.php',
+		'integrate_member_context' => '$sourcedir/ActivityBar.php|ActivityBar::create#',
+		'integrate_menu_buttons' => '$sourcedir/ActivityBar.php|ActivityBar::call#',
+		'integrate_general_mod_settings' => '$sourcedir/ActivityBar.php|ActivityBar::settings#',
 	);
+
 
 	foreach ($hooks as $hook => $function)
 		remove_integration_function($hook, $function);
