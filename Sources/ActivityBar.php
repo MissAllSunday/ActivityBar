@@ -51,6 +51,8 @@ class ActivityBar extends Ohara
 
 	protected function settings(&$config_vars)
 	{
+		global $txt;
+
 		$config_vars[] = $this->text('title');
 		$config_vars[] = array('check', self::$name .'_enable', 'subtext' => $this->text('enable_sub'));
 		$config_vars[] = array('check', self::$name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
@@ -59,6 +61,22 @@ class ActivityBar extends Ohara
 		$config_vars[] = array('int', self::$name .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
 		$config_vars[] = array('int', self::$name .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
 		$config_vars[] = array('int', self::$name .'_max_width', 'subtext' => $this->text('max_width_sub'));
+
+		// Option to select the placement.
+		$config_vars[] = array('select', self::$name .'_placement',
+			array(
+				$txt['custom_edit_placement_standard'],
+				$txt['custom_edit_placement_with_icons'],
+				$txt['custom_edit_placement_above_signature'],
+				$txt['custom_profile_placement_below_signature'],
+				$txt['custom_profile_placement_below_avatar'],
+				$txt['custom_profile_placement_above_name'],
+				$txt['custom_profile_placement_bottom'],
+			),
+			'subtext' => $this->text('placement_sub'),
+			'multiple' => false,
+		);
+
 		$config_vars[] = '';
 	}
 

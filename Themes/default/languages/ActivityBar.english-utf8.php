@@ -18,3 +18,5 @@ $txt['ActivityBar_max_posts'] = 'Max posts';
 $txt['ActivityBar_max_posts_sub'] = 'Number of posts required in order to fill the bar. <br />Leave empty for using the default value: (500 posts).';
 $txt['ActivityBar_max_width'] = 'Max width';
 $txt['ActivityBar_max_width_sub'] = 'Bar width. When the post limit set above is reached, the bar will have this width. <br />In pixels. Leave empty to use the default value: (139px).';
+$txt['ActivityBar_placement'] = 'Placement';
+$txt['ActivityBar_placement_sub'] = 'The place where the activity bar will be show.';
