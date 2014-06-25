@@ -97,8 +97,8 @@ class ActivityBar
 			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
-			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
-			$max_posts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
+			$maxWidth = $this->setting('max_width') ? $this->setting('max_width') : 139;
+			$maxPosts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
 			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
 			self::$_activity[$user] = array();
 
@@ -122,14 +122,14 @@ class ActivityBar
 			$smcFunc['db_free_result']($request);
 
 			/* Calculate everything. */
-			$num_posts = $posts / $max_posts;
-			$num_posts = $num_posts > 1 ? 1 : $num_posts;
-			$percentage = $num_posts * 100;
-			$bar_width = $max_width * $num_posts;
+			$numPosts = $posts / $maxPosts;
+			$numPosts = $numPosts > 1 ? 1 : $numPosts;
+			$percentage = $numPosts * 100;
+			$barWidth = $maxWidth * $numPosts;
 
 			/* Store the result in a array. */
 			self::$_activity[$user] = array(
-				'width' => $bar_width,
+				'width' => $barWidth,
 				'percentage' => round($percentage,2),
 			);
 
