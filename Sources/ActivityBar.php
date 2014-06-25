@@ -38,6 +38,7 @@ if (!defined('SMF'))
 class ActivityBar
 {
 	protected $_className;
+	protected static $_activity = array();
 
 	/**
 	 * Setup
@@ -72,23 +73,34 @@ class ActivityBar
 		$context['html_headers'] .= $this->css();
 	}
 
-	public function create(&$user, $display_custom_fields)
+	public function show(&$data, $user, $display_custom_fields)
 	{
-		global $smcFunc, $context;
 
-		// If we aren't loading any custom profile field, don't bother.
-		if (empty($display_custom_fields))
+	}
+
+	public function create($user)
+	{
+		global $smcFunc;
+
+		// Meh...
+		if (empty($user))
 			return false;
 
-		/* We already have what we need */
-		if (($context[$this->_className][$user] = cache_get_data($this->_className .'_' . $user,
+		else
+			$user = (int) $user;
+
+		// We already have what we need.
+		if (!empty(self::$_activity[$user]))
+			return self::$_activity[$user];
+
+		if ((self::$_activity[$user] = cache_get_data($this->_className .'_' . $user,
 			120)) == null)
 		{
 			/* Make sure everything is set. If something is missing, use a default value. */
 			$max_width = $this->setting('max_width') ? $this->setting('max_width') : 139;
 			$max_posts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
 			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
-			$context[$this->_className][$user] = array();
+			self::$_activity[$user] = array();
 
 			/* Calculate the starting date */
 			$startingDate = time() - ($days * 86400);
@@ -116,16 +128,16 @@ class ActivityBar
 			$bar_width = $max_width * $num_posts;
 
 			/* Store the result in a array. */
-			$context[$this->_className][$user] = array(
+			self::$_activity[$user] = array(
 				'width' => $bar_width,
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data($this->_className .'_' . $user, $context[$this->_className][$user], 120);
+			cache_put_data($this->_className .'_' . $user, self::$_activity[$user], 120);
 		}
 
 		/* There you go. Anything else? */
-		return $context[$this->_className][$user];
+		return self::$_activity[$user];
 	}
 
 	public function activityDisplay($user)
