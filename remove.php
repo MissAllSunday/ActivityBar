@@ -39,9 +39,11 @@
 		exit('Error Cannot remove - please verify you put this in the same place as SMF\'s index.php.');
 
 	$hooks = array(
-		'integrate_member_context' => '$sourcedir/ActivityBar.php|ActivityBar::create#',
+		'integrate_member_context' => '$sourcedir/ActivityBar.php|ActivityBar::data#',
 		'integrate_menu_buttons' => '$sourcedir/ActivityBar.php|ActivityBar::call#',
 		'integrate_general_mod_settings' => '$sourcedir/ActivityBar.php|ActivityBar::settings#',
+		'integrate_prepare_display_context' => '$sourcedir/ActivityBar.php|ActivityBar::showDisplay#',
+		'integrate_load_custom_profile_fields' => '$sourcedir/ActivityBar.php|ActivityBar::showProfile#',
 	);
 
 

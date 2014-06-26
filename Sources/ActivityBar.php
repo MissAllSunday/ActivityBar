@@ -91,7 +91,7 @@ class ActivityBar extends Ohara
 		$context['html_headers'] .= $this->css();
 	}
 
-	public function show(&$data, $user, $display_custom_fields)
+	public function data(&$data, $user, $display_custom_fields)
 	{
 		// Mod is disabled.
 		if(!$this->setting('enable'))
@@ -104,13 +104,45 @@ class ActivityBar extends Ohara
 		// Get this user's activity.
 		$activity = $this->create($user);
 
-		// Append the data.
-		$data['custom_fields'][] = array(
+		// Append the data. Cheating, I'm gonna use a string key to make it easier for me to recognize this little buddy later...
+		$data['custom_fields']['Activity'] = array(
 			'title' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'value' => template_activity_display($activity),
-			'placement' => !empty($custom['placement']) ? $custom['placement'] : 0,
+			'placement' => !empty($this->setting('placement')) ? $this->setting('placement') : 0,
 		);
+
+		unset($activity);
+	}
+
+	public function showDisplay(&$output, &$message)
+	{
+		// Mod is disabled.
+		if(!$this->setting('enable'))
+			return;
+
+		// So yeah, lets use our own little cheat... and lots and lots of empty checks!!!
+		if(!$this->setting('show_in_posts') && !empty($output['member']) && !empty($output['member']['custom_fields'] && !empty($output['member']['custom_fields']['Activity'])))
+			unset($output['member']['custom_fields']['Activity']);
+	}
+
+	public function showProfile($memID, $area)
+	{
+		global $context;
+
+		// Eww, why do I need to abuse global scope like this... gross :(
+		if (empty($area) && $this->setting('show_in_profile'))
+		{
+			// Get this user's activity.
+			$activity = $this->create($user);
+
+			$context['custom_fields'][] = array(
+				'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+				'placement' => 0,
+				'output_html' => template_activity_profile($activity),
+				'show_reg' => false,
+			);
+		}
 	}
 
 	public function create($user)
@@ -131,16 +163,16 @@ class ActivityBar extends Ohara
 		if ((self::$_activity[$user] = cache_get_data(self::$name .'_' . $user,
 			120)) == null)
 		{
-			/* Make sure everything is set. If something is missing, use a default value. */
+			// Make sure everything is set. If something is missing, use a default value.
 			$maxWidth = $this->setting('max_width') ? $this->setting('max_width') : 139;
 			$maxPosts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
 			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
 			self::$_activity[$user] = array();
 
-			/* Calculate the starting date */
+			// Calculate the starting date.
 			$startingDate = time() - ($days * 86400);
 
-			/* Get all posts posted since the starting date. */
+			// Get all posts posted since the starting date.
 			$request = $smcFunc['db_query']('', '
 				SELECT poster_time, id_member
 				FROM {db_prefix}messages
@@ -151,18 +183,18 @@ class ActivityBar extends Ohara
 				)
 			);
 
-			/* Count the posts. */
+			// Count the posts.
 			$posts = $smcFunc['db_num_rows']($request);
 
 			$smcFunc['db_free_result']($request);
 
-			/* Calculate everything. */
+			// Calculate everything.
 			$numPosts = $posts / $maxPosts;
 			$numPosts = $numPosts > 1 ? 1 : $numPosts;
 			$percentage = $numPosts * 100;
 			$barWidth = $maxWidth * $numPosts;
 
-			/* Store the result in a array. */
+			// Store the result in a array.
 			self::$_activity[$user] = array(
 				'width' => $barWidth,
 				'percentage' => round($percentage,2),
@@ -171,7 +203,7 @@ class ActivityBar extends Ohara
 			cache_put_data(self::$name .'_' . $user, self::$_activity[$user], 120);
 		}
 
-		/* There you go. Anything else? */
+		// There you go. Anything else?
 		return self::$_activity[$user];
 	}
 
