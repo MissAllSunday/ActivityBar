@@ -32,21 +32,20 @@
  * Jessica González <suki@missallsunday.com>
  */
 
-function template_activity_profile($user)
+function template_activity_profile($activity)
 {
-	global $context, $txt, $modSettings;
+	global $txt, $modSettings;
 
-	if (empty($user) || empty($context[$user]['ActivityBar']))
+	if (empty($activity))
 		return false;
 
 	$template = '';
-	$bar = $context[$user]['ActivityBar'];
 
 	$template .='
 		<div class="activity_div">
 			<div class="activity_holder" style="width: '. (!empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139) .'px;">
-				<div class="ActivityBar" style="width: '. $bar['width'] .'px;">
-					<div class="activity_percentage">'. $bar['percentage'] .'%</div>
+				<div class="ActivityBar" style="width: '. $activity['width'] .'px;">
+					<div class="activity_percentage">'. $activity['percentage'] .'%</div>
 				</div>
 			</div>
 		</div>';
@@ -54,22 +53,21 @@ function template_activity_profile($user)
 	return $template;
 }
 
-function template_activity_display($user)
+function template_activity_display($activity)
 {
 	global $context, $txt, $modSettings;
 
-	if (empty($user) || empty($context[$user]['ActivityBar']))
+	if (empty($activity))
 		return false;
 
 	$template = '';
-	$bar = $context[$user]['ActivityBar'];
 
 	$template .='
 		<div class="activity_div">
 			'. (!empty($modSettings['ActivityBar_label']) ? $modSettings['ActivityBar_label'] : $txt['ActivityBar_standardlabel']) .':
 			<div class="activity_holder" style="width: '. (!empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139) .'px;">
-				<div class="ActivityBar" style="width: '. $bar['width'] .'px;">
-					<div class="activity_percentage">'. $bar['percentage'] .'%</div>
+				<div class="ActivityBar" style="width: '. $activity['width'] .'px;">
+					<div class="activity_percentage">'. $activity['percentage'] .'%</div>
 				</div>
 			</div>
 		</div>';
