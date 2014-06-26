@@ -55,7 +55,7 @@ function template_activity_profile($activity)
 
 function template_activity_display($activity)
 {
-	global $context, $txt, $modSettings;
+	global $txt, $modSettings;
 
 	if (empty($activity))
 		return false;
