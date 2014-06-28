@@ -9,7 +9,6 @@
 	<install for="2.1 Alpha 1, 2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
-		<modification>ActivityBar.xml</modification>
 		<require-file name="Sources/Ohara.php" destination="$sourcedir">Helper library</require-file>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
