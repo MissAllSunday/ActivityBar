@@ -200,7 +200,7 @@ class ActivityBar extends Ohara
 	}
 
 	/* DUH! WINNING! */
-	protected function who()
+	public function who()
 	{
 		global $context;
 
