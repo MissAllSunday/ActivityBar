@@ -35,19 +35,13 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
+// There is no autoload feature on SMF so...
+require_once($sourcedir . '/Ohara.php');
+
 class ActivityBar extends Ohara
 {
-	protected static $name = __CLASS__;
+	public static $name = __CLASS__;
 	protected static $_activity = array();
-
-	/**
-	 * Setup
-	 */
-	protected function __construct()
-	{
-		// Call the helper.
-		parent::__construct();
-	}
 
 	protected function settings(&$config_vars)
 	{
