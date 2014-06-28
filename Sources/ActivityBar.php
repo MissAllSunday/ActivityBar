@@ -80,14 +80,6 @@ class ActivityBar extends Ohara
 		$config_vars[] = '';
 	}
 
-	protected function call(&$menu_buttons)
-	{
-		global $context;
-
-		if (isset($context['current_action']) && $context['current_action'] === 'credits')
-			$context['copyrights']['mods'][] = $this->who();
-	}
-
 	public function data(&$data, $user, $display_custom_fields)
 	{
 		// Mod is disabled.
@@ -210,6 +202,9 @@ class ActivityBar extends Ohara
 	/* DUH! WINNING! */
 	protected function who()
 	{
-		return '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
+		global $context;
+
+		if (isset($context['current_action']) && $context['current_action'] === 'credits')
+			$context['copyrights']['mods'][] = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 	}
 }
