@@ -43,7 +43,7 @@ class ActivityBar extends Ohara
 	public static $name = __CLASS__;
 	protected static $_activity = array();
 
-	protected function settings(&$config_vars)
+	public function settings(&$config_vars)
 	{
 		global $txt;
 

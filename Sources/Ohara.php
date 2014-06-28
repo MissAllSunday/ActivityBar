@@ -17,7 +17,7 @@ class Ohara
 		global $txt;
 
 		// This should be extended by somebody else...
-		if (!empty(static::$name))
+		if (empty(static::$name))
 			return false;
 
 		// No var to check.
