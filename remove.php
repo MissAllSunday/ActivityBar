@@ -44,6 +44,7 @@
 		'integrate_general_mod_settings' => '$sourcedir/ActivityBar.php|ActivityBar::settings#',
 		'integrate_prepare_display_context' => '$sourcedir/ActivityBar.php|ActivityBar::showDisplay#',
 		'integrate_load_custom_profile_fields' => '$sourcedir/ActivityBar.php|ActivityBar::showProfile#',
+		'integrate_load_theme' => '$sourcedir/ActivityBar.php|ActivityBar::css#',
 	);
 
 

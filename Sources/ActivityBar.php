@@ -194,6 +194,12 @@ class ActivityBar extends Ohara
 		return self::$_activity[$user];
 	}
 
+	public function css()
+	{
+		// The much needed css file.
+		loadCSSFile('activity.css');
+	}
+
 	/* DUH! WINNING! */
 	public function who()
 	{
