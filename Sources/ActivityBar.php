@@ -86,9 +86,6 @@ class ActivityBar extends Ohara
 
 		if (isset($context['current_action']) && $context['current_action'] === 'credits')
 			$context['copyrights']['mods'][] = $this->who();
-
-		// Call the css bits
-		$context['html_headers'] .= $this->css();
 	}
 
 	public function data(&$data, $user, $display_custom_fields)
@@ -156,6 +153,9 @@ class ActivityBar extends Ohara
 		else
 			$user = (int) $user;
 
+		// The much needed css file.
+		loadCSSFile('activity.css');
+
 		// We already have what we need.
 		if (!empty(self::$_activity[$user]))
 			return self::$_activity[$user];
@@ -205,44 +205,6 @@ class ActivityBar extends Ohara
 
 		// There you go. Anything else?
 		return self::$_activity[$user];
-	}
-
-	protected function css()
-	{
-		global $settings;
-
-		$return = '';
-
-		/* Only show this stuff if we are on a message page or the profile */
-		if($this->setting('enable') && isset($_REQUEST['topic']) || (isset($_REQUEST['action']) && $_REQUEST['action'] == 'profile'))
-		{
-			loadLanguage(self::$name);
-
-			$return .= '
-<style type="text/css">
-.activity_holder
-{
-	height: 15px;
-	border: 1px solid #9BAEBF;
-}
-
-.ActivityBar
-{
-	height: 15px;
-	background: url('. $settings['default_theme_url'] .'/images/theme/main_block.png) 90% -200px;
-}
-
-.activity_percentage
-{
-	height: 15px;
-	color: #333333;
-	text-align: center;
-}
-</style>
-';
-	}
-
-		return $return;
 	}
 
 	/* DUH! WINNING! */
