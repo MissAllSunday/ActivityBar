@@ -84,6 +84,8 @@ class ActivityBar extends Ohara
 		if (empty($display_custom_fields))
 			return;
 
+		loadTemplate(self::$name);
+
 		// Get this user's activity.
 		$activity = $this->create($user);
 
@@ -114,10 +116,12 @@ class ActivityBar extends Ohara
 		global $context;
 
 		// Eww, why do I need to abuse global scope like this... gross :(
-		if (empty($area) && $this->setting('show_in_profile'))
+		if ($area == 'summary' && $this->setting('show_in_profile'))
 		{
 			// Get this user's activity.
 			$activity = $this->create($user);
+
+			loadTemplate(self::$name);
 
 			$context['custom_fields'][] = array(
 				'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
@@ -138,9 +142,6 @@ class ActivityBar extends Ohara
 
 		else
 			$user = (int) $user;
-
-		// The much needed css file.
-		loadCSSFile('activity.css');
 
 		// We already have what we need.
 		if (!empty(self::$_activity[$user]))
