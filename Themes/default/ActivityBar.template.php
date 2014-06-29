@@ -60,11 +60,14 @@ function template_activity_display($activity)
 	if (empty($activity))
 		return false;
 
+	// Don't show the label if placement is "standard with title" as the code will do it automatically.
+	$label = $activity['placement'] ? $activity['title'] ? '';
+
 	$template = '';
 
 	$template .='
 		<div class="activity_div">
-			'. (!empty($modSettings['ActivityBar_label']) ? $modSettings['ActivityBar_label'] : $txt['ActivityBar_standardlabel']) .':
+			'. ($label) .'
 			<div class="activity_holder" style="width: '. (!empty($modSettings['ActivityBar_max_width']) ? $modSettings['ActivityBar_max_width'] : 139) .'px;">
 				<div class="ActivityBar" style="width: '. $activity['width'] .'px;">
 					<div class="activity_percentage">'. $activity['percentage'] .'%</div>
