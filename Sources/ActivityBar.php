@@ -119,7 +119,7 @@ class ActivityBar extends Ohara
 		if ($area == 'summary' && $this->setting('show_in_profile'))
 		{
 			// Get this user's activity.
-			$activity = $this->create($user);
+			$activity = $this->create($memID);
 
 			loadTemplate(self::$name);
 
