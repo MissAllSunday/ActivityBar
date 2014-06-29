@@ -115,6 +115,10 @@ class ActivityBar extends Ohara
 	{
 		global $context;
 
+		// Mod is disabled.
+		if(!$this->setting('enable'))
+			return;
+
 		// Eww, why do I need to abuse global scope like this... gross :(
 		if ($area == 'summary' && $this->setting('show_in_profile'))
 		{
