@@ -12,7 +12,6 @@
 		<require-file name="Sources/Ohara.php" destination="$sourcedir">Helper library</require-file>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
-		<require-file name="activity.css" destination="$themedir/css" />
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
 	</install>
 
