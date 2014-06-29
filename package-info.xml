@@ -15,7 +15,7 @@
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
 	</install>
 
-	<uninstall for="2.0 - 2.0.99">
+	<uninstall for="2.1 Alpha 1, 2.1 - 2.1.99">
 		<readme type="inline">This will uninstall the Activity Bar mod. Thanks for using this mod.</readme>
 		<code>remove.php</code>
 		<modification reverse="true">ActivityBar.xml</modification>

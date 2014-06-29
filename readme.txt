@@ -6,7 +6,7 @@ Original idea and original developer: [url=http://www.simplemachines.org/communi
 
 [color=purple][b][size=12pt]Description[/size][/b][/color]
 
-[b]For SMF 2.0.x only[/b]
+[b]For SMF 2.1.x only[/b]
 
 [i]Activity Bar[/i] displays a bar in posts and/or profiles, showing how active the user is.
 The admin can choose where to display it (Posts, Profile or both), max width, how many posts that are required for a full bar, and the timeframe in which posts are counted.
@@ -29,16 +29,24 @@ This information is then used to create the bar.
  
 [color=purple][b][size=12pt]Settings[/size][/b][/color]
 
--Admin > Configuration > Modifications
+- Admin > Configuration > Modifications
 
 
 [color=purple][b][size=12pt]Languages[/size][/b][/color]
 
--English/utf8
--Spanish/utf8
+- English/utf8
+- Spanish/utf8
 
 
 [color=purple][b][size=12pt]Changelog[/size][/b][/color]
+
+2.0 June 2014
+- Compatibility with SMF 2.1 only.
+- No more file edits.
+- CSS3 CSS3 progress bars thanks to http://red-team-design.com/stylish-css3-progress-bars/
+- All css moved to activity.css
+- Select the position to show the bar on the Display page.
+- Fixed some minor bugs.
 
 1.2 October 2013
 - Changed folder structure.
