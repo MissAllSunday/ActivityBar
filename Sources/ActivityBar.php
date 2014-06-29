@@ -89,12 +89,16 @@ class ActivityBar extends Ohara
 		// Get this user's activity.
 		$activity = $this->create($user);
 
+		// Declare some vars.
+		$placement = !empty($this->setting('placement')) ? $this->setting('placement') : 0;
+		$label = $this->setting('label') ? $this->setting('label') : $this->text('standardlabel');
+
 		// Append the data. Cheating, I'm gonna use a string key to make it easier for me to recognize this little buddy later...
 		$data['custom_fields']['Activity'] = array(
-			'title' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+			'title' => $label,
 			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'value' => template_activity_display($activity),
-			'placement' => !empty($this->setting('placement')) ? $this->setting('placement') : 0,
+			'placement' => $placement,
 		);
 
 		unset($activity);
