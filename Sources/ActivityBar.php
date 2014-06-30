@@ -50,7 +50,7 @@ class ActivityBar extends Ohara
 		$config_vars[] = '';
 	}
 
-	public function data(&$data, $user, $display_custom_fields)
+	public function activity(&$data, $user, $display_custom_fields)
 	{
 		// Mod is disabled.
 		if(!$this->setting('enable'))
