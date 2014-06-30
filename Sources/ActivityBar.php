@@ -66,7 +66,7 @@ class ActivityBar extends Ohara
 		$activity = $this->create($user);
 
 		// Append some vars.
-		$activity['placement'] = !empty($this->setting('placement')) && $this->setting('placement') != 0 ? (int) $this->setting('placement') : 0;
+		$activity['placement'] = $this->enable('placement') && $this->setting('placement') != 0 ? (int) $this->setting('placement') : 0;
 		$activity['label'] = $this->setting('label') ? $this->setting('label') : $this->text('standardlabel');
 
 		// Append the data. Cheating, I'm gonna use a string key to make it easier for me to recognize this little buddy later...
@@ -87,7 +87,7 @@ class ActivityBar extends Ohara
 			return;
 
 		// So yeah, lets use our own little cheat... and lots and lots of empty checks!!!
-		if(!$this->setting('show_in_posts') && !empty($output['member']) && !empty($output['member']['custom_fields'] && !empty($output['member']['custom_fields']['Activity'])))
+		if(!$this->setting('show_in_posts') && !empty($output['member']) && !empty($output['member']['custom_fields']) && !empty($output['member']['custom_fields']['Activity']))
 			unset($output['member']['custom_fields']['Activity']);
 	}
 
