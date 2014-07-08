@@ -37,7 +37,7 @@ if (!defined('SMF'))
 
 require_once($sourcedir . '/Ohara.php');
 
-class ActivityBar extends Ohara
+class ActivityBar extends Suki\Ohara
 {
 	protected static $className = __CLASS__;
 	protected $hooks = array();
