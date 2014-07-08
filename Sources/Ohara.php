@@ -8,6 +8,8 @@
  * @license http://www.mozilla.org/MPL/2.0/
  */
 
+namespace Suki;
+
 class Ohara
 {
 	public static $name = '';
@@ -70,12 +72,17 @@ class Ohara
 
 	public function data($var)
 	{
-		return $this->sanitize($var);
+		return $this->validate($var) ? $this->sanitize($this->_request[$var]) : false;
 	}
 
-	public function validate($var)
+	public function validate($var, $type = 'request')
 	{
-		return (isset($this->_request[$var]));
+		$types = array('request' => $_REQUEST, 'get' => $_GET, 'post' => $_POST);
+
+		$this->_request = (empty($type) || !isset($types[$type])) ? $_REQUEST : $types[$type];
+
+		unset($types);
+		return (in_array($var, $this->_request));
 	}
 
 	public function sanitize($var)
@@ -83,8 +90,12 @@ class Ohara
 		global $smcFunc;
 
 		if (is_array($var))
+		{
 			foreach ($var as $k => $v)
 				$var[$k] = $this->sanitize($v);
+
+			return $var;
+		}
 
 		else
 		{
@@ -92,7 +103,7 @@ class Ohara
 				$var = (int)trim($var);
 
 			else if (is_string($var))
-				$var =  $smcFunc['htmltrim']($smcFunc['htmlspecialchars']($var), ENT_QUOTES);
+				$var = $smcFunc['htmltrim']($smcFunc['htmlspecialchars']($var), ENT_QUOTES);
 
 			else
 				$var = 'error_' . $var;
