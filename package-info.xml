@@ -4,22 +4,20 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>Suki:ActivityBar</id>
 	<name>Activity Bar</name>
-	<version>1.2</version>
+	<version>2.0</version>
 	<type>modification</type>
-	<install for="2.0 - 2.0.99">
+	<install for="2.1 Alpha 1, 2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
-		<modification>ActivityBar.xml</modification>
 		<require-file name="Sources/Ohara.php" destination="$sourcedir">Helper library</require-file>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
 	</install>
 
-	<uninstall for="2.0 - 2.0.99">
+	<uninstall for="2.1 Alpha 1, 2.1 - 2.1.99">
 		<readme type="inline">This will uninstall the Activity Bar mod. Thanks for using this mod.</readme>
 		<code>remove.php</code>
-		<modification reverse="true">ActivityBar.xml</modification>
 		<remove-file name="$sourcedir/ActivityBar.php" />
 		<remove-file name="$themedir/ActivityBar.template.php" />
 		<remove-file name="$languagedir/ActivityBar.english.php" />
@@ -28,5 +26,6 @@
 		<remove-file name="$languagedir/ActivityBar.spanish_latin-utf8.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_es.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_es-utf8.php" />
+		<remove-file name="$themedir/css/activity.css" />
 	</uninstall>
 </package-info>
