@@ -14,7 +14,7 @@ if (!defined('SMF'))
 // There is no autoload feature on SMF so...
 require_once($sourcedir . '/Ohara.php');
 
-class ActivityBar extends Ohara
+class ActivityBar extends Suki\Ohara
 {
 	public static $name = __CLASS__;
 	protected static $_activity = array();
