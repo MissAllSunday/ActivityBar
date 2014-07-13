@@ -140,9 +140,9 @@ class ActivityBar extends Suki\Ohara
 			120)) == null)
 		{
 			// Make sure everything is set. If something is missing, use a default value.
-			$maxWidth = $this->setting('max_width') ? $this->setting('max_width') : 139;
-			$maxPosts = $this->setting('max_posts') ? $this->setting('max_posts') : 500;
-			$days = $this->setting('timeframe') ? $this->setting('timeframe') : 30;
+			$maxWidth = $this->enable('max_width') ? $this->setting('max_width') : 139;
+			$maxPosts = $this->enable('max_posts') ? $this->setting('max_posts') : 500;
+			$days = $this->enable('timeframe') ? $this->setting('timeframe') : 30;
 			self::$_activity[$user] = array();
 
 			// Calculate the starting date.
