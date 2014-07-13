@@ -187,6 +187,9 @@ class ActivityBar extends Suki\Ohara
 
 	public function getActivity($user = 0)
 	{
+		if ($user && !isset(self::$_activity[$user]))
+			$this->create($user);
+
 		return $user ? self::$_activity[$user] : self::$_activity;
 	}
 
