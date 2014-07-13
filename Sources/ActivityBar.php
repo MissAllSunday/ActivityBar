@@ -185,6 +185,11 @@ class ActivityBar extends Suki\Ohara
 		return self::$_activity[$user];
 	}
 
+	public function getActivity($user = 0)
+	{
+		return $user ? self::$_activity[$user] : self::$_activity;
+	}
+
 	public function css()
 	{
 		// The much needed css file.
