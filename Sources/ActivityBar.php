@@ -174,6 +174,8 @@ class ActivityBar extends Suki\Ohara
 			self::$_activity[$user] = array(
 				'width' => $barWidth,
 				'percentage' => round($percentage,2),
+				'post' => $numPosts,
+				'realPost' => $posts,
 			);
 
 			cache_put_data($this->name .'_' . $user, self::$_activity[$user], 120);
