@@ -12,28 +12,61 @@ namespace Suki;
 
 class Ohara
 {
-	public static $name = '';
+	public $name = '';
+	protected $_text = array();
+	protected static $_registry = array();
+	protected $_request = array();
+
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	public function setRegistry()
+	{
+		self::$_registry[$this->name] = $this;
+	}
+
+	public function getRegistry($instance = '')
+	{
+		return $instance ? self::$_registry[$instance] : self::$_registry;
+	}
 
 	public function text($var)
 	{
 		global $txt;
 
 		// This should be extended by somebody else...
-		if (empty(static::$name))
+		if (empty($this->name) || empty($var))
 			return false;
 
-		// No var to check.
+		if (!isset($this->_text[$var]))
+			$this->setText($var);
+
+		return $this->_text[$var];
+	}
+
+	protected function setText($var)
+	{
+		global $txt;
+
+		// No var no set.
 		if (empty($var))
 			return false;
 
 		// Load the mod's language file.
-		loadLanguage(static::$name);
+		loadLanguage($this->name);
 
-		if (!empty($txt[static::$name .'_'. $var]))
-			return $txt[static::$name .'_'. $var];
+		if (!empty($txt[$this->name .'_'. $var]))
+			$this->_text[$var] =  $txt[$this->name .'_'. $var];
 
 		else
-			return false;
+			$this->_text[$var] = false;
+	}
+
+	public function getAllText()
+	{
+		return $this->_text;
 	}
 
 	public function enable($var)
@@ -43,7 +76,7 @@ class Ohara
 		if (empty($var))
 			return false;
 
-		if (isset($modSettings[static::$name .'_'. $var]) && !empty($modSettings[static::$name .'_'. $var]))
+		if (isset($modSettings[$this->name .'_'. $var]) && !empty($modSettings[$this->name .'_'. $var]))
 			return true;
 
 		else
@@ -55,7 +88,22 @@ class Ohara
 		global $modSettings;
 
 		// This should be extended by somebody else...
-		if (empty(static::$name))
+		if (empty($this->name) || empty($var))
+			return false;
+
+		if (true == $this->enable($var))
+			return $modSettings[$this->name .'_'. $var];
+
+		else
+			return false;
+	}
+
+	public function modSetting($var)
+	{
+		global $modSettings;
+
+		// This should be extended by somebody else...
+		if (empty($this->name))
 			return false;
 
 		if (empty($var))
@@ -63,8 +111,8 @@ class Ohara
 
 		global $modSettings;
 
-		if (true == $this->enable($var))
-			return $modSettings[static::$name .'_'. $var];
+		if (isset($modSettings[$var]))
+			return $modSettings[$var];
 
 		else
 			return false;
