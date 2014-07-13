@@ -19,6 +19,11 @@ class ActivityBar extends Suki\Ohara
 	public $name = __CLASS__;
 	protected static $_activity = array();
 
+	public function __construct()
+	{
+		$this->setRegistry();
+	}
+
 	public function settings(&$config_vars)
 	{
 		global $txt;
