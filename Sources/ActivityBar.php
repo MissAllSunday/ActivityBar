@@ -16,7 +16,7 @@ require_once($sourcedir . '/Ohara.php');
 
 class ActivityBar extends Suki\Ohara
 {
-	public static $name = __CLASS__;
+	public $name = __CLASS__;
 	protected static $_activity = array();
 
 	public function settings(&$config_vars)
@@ -24,16 +24,16 @@ class ActivityBar extends Suki\Ohara
 		global $txt;
 
 		$config_vars[] = $this->text('title');
-		$config_vars[] = array('check', self::$name .'_enable', 'subtext' => $this->text('enable_sub'));
-		$config_vars[] = array('check', self::$name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
-		$config_vars[] = array('check', self::$name .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
-		$config_vars[] = array('text', self::$name .'_label', 'subtext' => $this->text('label_sub'));
-		$config_vars[] = array('int', self::$name .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
-		$config_vars[] = array('int', self::$name .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
-		$config_vars[] = array('int', self::$name .'_max_width', 'subtext' => $this->text('max_width_sub'));
+		$config_vars[] = array('check', $this->name .'_enable', 'subtext' => $this->text('enable_sub'));
+		$config_vars[] = array('check', $this->name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
+		$config_vars[] = array('check', $this->name .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
+		$config_vars[] = array('text', $this->name .'_label', 'subtext' => $this->text('label_sub'));
+		$config_vars[] = array('int', $this->name .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
+		$config_vars[] = array('int', $this->name .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
+		$config_vars[] = array('int', $this->name .'_max_width', 'subtext' => $this->text('max_width_sub'));
 
 		// Option to select the placement.
-		$config_vars[] = array('select', self::$name .'_placement',
+		$config_vars[] = array('select', $this->name .'_placement',
 			array(
 				$txt['custom_edit_placement_standard'],
 				$txt['custom_edit_placement_with_icons'],
@@ -60,7 +60,7 @@ class ActivityBar extends Suki\Ohara
 		if (empty($display_custom_fields))
 			return;
 
-		loadTemplate(self::$name);
+		loadTemplate($this->name);
 
 		// Get this user's activity.
 		$activity = $this->create($user);
@@ -105,7 +105,7 @@ class ActivityBar extends Suki\Ohara
 			// Get this user's activity.
 			$activity = $this->create($memID);
 
-			loadTemplate(self::$name);
+			loadTemplate($this->name);
 
 			$context['custom_fields'][] = array(
 				'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
@@ -131,7 +131,7 @@ class ActivityBar extends Suki\Ohara
 		if (!empty(self::$_activity[$user]))
 			return self::$_activity[$user];
 
-		if ((self::$_activity[$user] = cache_get_data(self::$name .'_' . $user,
+		if ((self::$_activity[$user] = cache_get_data($this->name .'_' . $user,
 			120)) == null)
 		{
 			// Make sure everything is set. If something is missing, use a default value.
@@ -171,7 +171,7 @@ class ActivityBar extends Suki\Ohara
 				'percentage' => round($percentage,2),
 			);
 
-			cache_put_data(self::$name .'_' . $user, self::$_activity[$user], 120);
+			cache_put_data($this->name .'_' . $user, self::$_activity[$user], 120);
 		}
 
 		// There you go. Anything else?
