@@ -130,7 +130,7 @@ class Ohara
 		$this->_request = (empty($type) || !isset($types[$type])) ? $_REQUEST : $types[$type];
 
 		unset($types);
-		return (in_array($var, $this->_request));
+		return (isset($this->_request[$var]));
 	}
 
 	public function sanitize($var)
