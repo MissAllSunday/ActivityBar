@@ -11,8 +11,8 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-// There is no autoload feature on SMF so...
-require_once($sourcedir . '/Ohara.php');
+// Use composer!
+require_once ($boarddir .'/vendor/autoload.php');
 
 class ActivityBar extends Suki\Ohara
 {
