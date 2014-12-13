@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "b7432e5482e17251fb007c44f4081364",
+    "packages": [
+        {
+            "name": "suki/ohara",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MissAllSunday/Ohara.git",
+                "reference": "e4c2f11a130088939c1ede9e19daa98ad7347408"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MissAllSunday/Ohara/zipball/e4c2f11a130088939c1ede9e19daa98ad7347408",
+                "reference": "e4c2f11a130088939c1ede9e19daa98ad7347408",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Suki": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jessica González",
+                    "email": "suki@missallsunday.com",
+                    "homepage": "http://missallsunday.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Helper class for SMF mods",
+            "homepage": "http://github.com/MissAllSunday/Ohara",
+            "keywords": [
+                "SMF",
+                "modifications"
+            ],
+            "time": "2014-12-03 00:54:44"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "suki/ohara": 20
+    },
+    "prefer-stable": false,
+    "platform": [],
+    "platform-dev": []
+}
