@@ -16,7 +16,7 @@
 	</install>
 
 	<uninstall for="2.1 Beta 1, 2.1 - 2.1.99">
-		<readme type="inline">This will uninstall the Activity Bar mod. Thanks for using this mod.</readme>
+		<readme type="inline">This will uninstall the Activity Bar mod. Thank you for using this mod.</readme>
 		<code>remove.php</code>
 		<remove-file name="$sourcedir/ActivityBar.php" />
 		<remove-file name="$themedir/ActivityBar.template.php" />

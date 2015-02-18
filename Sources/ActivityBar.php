@@ -12,7 +12,7 @@ if (!defined('SMF'))
 	die('No direct access...');
 
 // Use composer!
-require_once ($boarddir .'/vendor/autoload.php');
+require_once ($sourcedir .'/Suki/Ohara.php');
 
 class ActivityBar extends Suki\Ohara
 {
@@ -40,13 +40,13 @@ class ActivityBar extends Suki\Ohara
 		// Option to select the placement.
 		$config_vars[] = array('select', $this->name .'_placement',
 			array(
-				$txt['custom_edit_placement_standard'],
-				$txt['custom_edit_placement_with_icons'],
-				$txt['custom_edit_placement_above_signature'],
+				$txt['custom_profile_placement_standard'],
+				$txt['custom_profile_placement_icons'],
+				$txt['custom_profile_placement_above_signature'],
 				$txt['custom_profile_placement_below_signature'],
 				$txt['custom_profile_placement_below_avatar'],
-				$txt['custom_profile_placement_above_name'],
-				$txt['custom_profile_placement_bottom'],
+				$txt['custom_profile_placement_above_member'],
+				$txt['custom_profile_placement_bottom_poster'],
 			),
 			'subtext' => $this->text('placement_sub'),
 			'multiple' => false,
