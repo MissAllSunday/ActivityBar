@@ -11,8 +11,8 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-// Use composer!
-require_once ($sourcedir .'/Suki/Ohara.php');
+// Use Ohara! manually :(
+require_once ($sourcedir .'/ohara/src/Suki/Ohara.php');
 
 class ActivityBar extends Suki\Ohara
 {

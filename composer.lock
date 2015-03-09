@@ -4,26 +4,122 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b7432e5482e17251fb007c44f4081364",
+    "hash": "bf0a7977cd9f9ff4d87fa714dd2c49f0",
     "packages": [
         {
-            "name": "suki/ohara",
-            "version": "dev-master",
+            "name": "composer/installers",
+            "version": "v1.0.21",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MissAllSunday/Ohara.git",
-                "reference": "e4c2f11a130088939c1ede9e19daa98ad7347408"
+                "url": "https://github.com/composer/installers.git",
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MissAllSunday/Ohara/zipball/e4c2f11a130088939c1ede9e19daa98ad7347408",
-                "reference": "e4c2f11a130088939c1ede9e19daa98ad7347408",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "shasum": ""
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installers\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "elgg",
+                "fuelphp",
+                "grav",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "zend",
+                "zikula"
+            ],
+            "time": "2015-02-18 17:17:01"
+        },
+        {
+            "name": "suki/ohara",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MissAllSunday/Ohara.git",
+                "reference": "f574a0346004eb2b2a467e661f206bf3701d19b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MissAllSunday/Ohara/zipball/f574a0346004eb2b2a467e661f206bf3701d19b9",
+                "reference": "f574a0346004eb2b2a467e661f206bf3701d19b9",
                 "shasum": ""
             },
             "require": {
+                "composer/installers": "1.0.*@dev",
                 "php": ">=5.3.0"
             },
-            "type": "library",
+            "type": "smf-module",
             "autoload": {
                 "psr-0": {
                     "Suki": "src/"
@@ -47,15 +143,13 @@
                 "SMF",
                 "modifications"
             ],
-            "time": "2014-12-03 00:54:44"
+            "time": "2015-02-24 02:03:41"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "suki/ohara": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": [],
     "platform-dev": []
