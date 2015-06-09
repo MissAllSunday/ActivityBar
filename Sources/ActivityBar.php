@@ -19,12 +19,22 @@ class ActivityBar extends Suki\Ohara
 	public $name = __CLASS__;
 	protected static $_activity = array();
 
+	// Define the hooks we are going to use
+	protected $_availableHooks = array(
+		'credits' => 'integrate_credits',
+		'memberContext' => 'integrate_member_context',
+		'generalSettings' => 'integrate_general_mod_settings',
+		'displayContext' => 'integrate_prepare_display_context',
+		'profile' => 'integrate_load_custom_profile_fields',
+		'css' => 'integrate_load_theme',
+	);
+
 	public function __construct()
 	{
 		$this->setRegistry();
 	}
 
-	public function settings(&$config_vars)
+	public function addGeneralSettings(&$config_vars)
 	{
 		global $txt;
 
@@ -55,7 +65,7 @@ class ActivityBar extends Suki\Ohara
 		$config_vars[] = '';
 	}
 
-	public function activity(&$data, $user, $display_custom_fields)
+	public function addMemberContext(&$data, $user, $display_custom_fields)
 	{
 		// Mod is disabled.
 		if(!$this->setting('enable'))
@@ -85,7 +95,7 @@ class ActivityBar extends Suki\Ohara
 		unset($activity);
 	}
 
-	public function showDisplay(&$output, &$message)
+	public function displayContext(&$output, &$message)
 	{
 		// Mod is disabled.
 		if(!$this->setting('enable'))
@@ -96,7 +106,7 @@ class ActivityBar extends Suki\Ohara
 			unset($output['member']['custom_fields']['Activity']);
 	}
 
-	public function showProfile($memID, $area)
+	public function addProfile($memID, $area)
 	{
 		global $context;
 
@@ -193,18 +203,9 @@ class ActivityBar extends Suki\Ohara
 		return $user ? self::$_activity[$user] : self::$_activity;
 	}
 
-	public function css()
+	public function addCss()
 	{
 		// The much needed css file.
 		loadCSSFile('activity.css', array('force_current' => false, 'validate' => true));
-	}
-
-	/* DUH! WINNING! */
-	public function who()
-	{
-		global $context;
-
-		if (isset($context['current_action']) && $context['current_action'] === 'credits')
-			$context['copyrights']['mods'][] = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity Bar mod &copy Suki</a>';
 	}
 }
