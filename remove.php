@@ -15,12 +15,7 @@
 		exit('Error Cannot remove - please verify you put this in the same place as SMF\'s index.php.');
 
 	$hooks = array(
-		'integrate_member_context' => '$sourcedir/ActivityBar.php|ActivityBar::activity#',
-		'integrate_credits' => '$sourcedir/ActivityBar.php|ActivityBar::who#',
-		'integrate_general_mod_settings' => '$sourcedir/ActivityBar.php|ActivityBar::settings#',
-		'integrate_prepare_display_context' => '$sourcedir/ActivityBar.php|ActivityBar::showDisplay#',
-		'integrate_load_custom_profile_fields' => '$sourcedir/ActivityBar.php|ActivityBar::showProfile#',
-		'integrate_load_theme' => '$sourcedir/ActivityBar.php|ActivityBar::css#',
+		'integrate_pre_load' => '$sourcedir/ActivityBar.php|ActivityBar::runTimeHooks#',
 	);
 
 

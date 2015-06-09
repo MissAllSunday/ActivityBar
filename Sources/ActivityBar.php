@@ -38,7 +38,7 @@ class ActivityBar extends Suki\Ohara
 	{
 		global $txt;
 
-		$config_vars[] = $this->text('title');
+		$config_vars[] = $this->text('modName');
 		$config_vars[] = array('check', $this->name .'_enable', 'subtext' => $this->text('enable_sub'));
 		$config_vars[] = array('check', $this->name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
 		$config_vars[] = array('check', $this->name .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
@@ -205,7 +205,7 @@ class ActivityBar extends Suki\Ohara
 
 	public function addCss()
 	{
-		// The much needed css file.
+		// The much needed css file. Load it fom the default theme.
 		loadCSSFile('activity.css', array('force_current' => false, 'validate' => true));
 	}
 }

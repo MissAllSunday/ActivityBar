@@ -9,7 +9,7 @@
 	<install for="2.1 Beta 1, 2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
-		<require-dir name="Sources/Suki" destination="$sourcedir">Source library</require-dir>
+		<require-dir name="Sources/ohara" destination="$sourcedir">Source library</require-dir>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
