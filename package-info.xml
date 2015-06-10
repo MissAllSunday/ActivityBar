@@ -6,7 +6,7 @@
 	<name>Activity Bar</name>
 	<version>2.0</version>
 	<type>modification</type>
-	<install for="2.1 Beta 1, 2.1 - 2.1.99">
+	<install for="2.1 Beta 1, 2.1 Beta 2, 2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<code>hooks.php</code>
 		<require-dir name="Sources/ohara" destination="$sourcedir">Source library</require-dir>
@@ -15,7 +15,7 @@
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
 	</install>
 
-	<uninstall for="2.1 Beta 1, 2.1 - 2.1.99">
+	<uninstall for="2.1 Beta 1, 2.1 Beta 2, 2.1 - 2.1.99">
 		<readme type="inline">This will uninstall the Activity Bar mod. Thank you for using this mod.</readme>
 		<code>remove.php</code>
 		<remove-file name="$sourcedir/ActivityBar.php" />
