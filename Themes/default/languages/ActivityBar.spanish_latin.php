@@ -2,7 +2,6 @@
 
 global $txt;
 
-$txt['ActivityBar_title'] = 'Activity Bar';
 $txt['ActivityBar_standardlabel'] = 'Actividad';
 $txt['ActivityBar_enable'] = 'Activar la barra de actividad';
 $txt['ActivityBar_enable_sub'] = 'Una barra que permite saber que t&aacute;n activo a estado un usuario en un determinado tiempo.';
@@ -20,3 +19,5 @@ $txt['ActivityBar_max_width'] = 'Ancho m&aacute;ximo de la barra';
 $txt['ActivityBar_max_width_sub'] = 'En pixels. Déjalo vacio para usar el valor por default (139px).';
 $txt['ActivityBar_placement'] = 'Mostrar';
 $txt['ActivityBar_placement_sub'] = 'El lugar en donde se mostrar&aacute; la actividad.';
+$txt['ActivityBar_modCredits'] = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity bar mod &copy Suki</a>';
+$txt['ActivityBar_modName'] = 'Activity Bar';

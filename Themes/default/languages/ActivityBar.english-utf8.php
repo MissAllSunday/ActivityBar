@@ -2,7 +2,6 @@
 
 global $txt;
 
-$txt['ActivityBar_title'] = 'Activity Bar';
 $txt['ActivityBar_standardlabel'] = 'Activity';
 $txt['ActivityBar_enable'] = 'Enable activity bar';
 $txt['ActivityBar_enable_sub'] = 'The master setting, needs to be on for the mod to work properly.';
@@ -20,3 +19,5 @@ $txt['ActivityBar_max_width'] = 'Max width';
 $txt['ActivityBar_max_width_sub'] = 'Bar width. When the post limit set above is reached, the bar will have this width. <br />In pixels. Leave empty to use the default value: (139px).';
 $txt['ActivityBar_placement'] = 'Placement';
 $txt['ActivityBar_placement_sub'] = 'The place where the activity bar will be show.';
+$txt['ActivityBar_modCredits'] = '<a href="http://missallsunday.com" title="Free SMF Mods">Activity bar mod &copy Suki</a>';
+$txt['ActivityBar_modName'] = 'Activity Bar';
