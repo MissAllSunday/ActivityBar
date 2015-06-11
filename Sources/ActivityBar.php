@@ -21,7 +21,6 @@ class ActivityBar extends Suki\Ohara
 
 	// Define the hooks we are going to use
 	protected $_availableHooks = array(
-		'credits' => 'integrate_credits',
 		'memberContext' => 'integrate_member_context',
 		'generalSettings' => 'integrate_general_mod_settings',
 		'displayContext' => 'integrate_prepare_display_context',
