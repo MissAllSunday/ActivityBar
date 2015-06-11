@@ -8,7 +8,13 @@
 	<type>modification</type>
 	<install for="2.1 Beta 1, 2.1 Beta 2, 2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
-		<code>hooks.php</code>
+		<license type="inline" parsebbc="false">
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+		</license>
+		<hook function="ActivityBar::runTimeHooks" hook="integrate_pre_load" file="$sourcedir/ActivityBar.php" object="true"></hook>
+		<credits url="http://missallsunday.com" license="MPL 2.0" copyright="Suki" licenseurl="https://www.mozilla.org/MPL/2.0/">Activity bar mod</credits>
 		<require-dir name="Sources/ohara" destination="$sourcedir">Source library</require-dir>
 		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
 		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
@@ -17,7 +23,7 @@
 
 	<uninstall for="2.1 Beta 1, 2.1 Beta 2, 2.1 - 2.1.99">
 		<readme type="inline">This will uninstall the Activity Bar mod. Thank you for using this mod.</readme>
-		<code>remove.php</code>
+		<hook function="ActivityBar::runTimeHooks" hook="integrate_pre_load" file="$sourcedir/ActivityBar.php" object="true" reverse="true"></hook>
 		<remove-file name="$sourcedir/ActivityBar.php" />
 		<remove-file name="$themedir/ActivityBar.template.php" />
 		<remove-file name="$languagedir/ActivityBar.english.php" />

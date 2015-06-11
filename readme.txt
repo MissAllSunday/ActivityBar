@@ -18,14 +18,6 @@ Calculating starts off by dividing the number of posts by the max number of post
 It then figures out how much of the bar should be filled, by multiplying the result from the earlier division, width the max possible with the bar can have (Again, set by administrators).
 This information is then used to create the bar.
 
-
-[color=purple][b][size=12pt]License[/size][/b][/color]
-
- * This SMF modification is subject to the Mozilla Public License Version
- * 1.1 (the "License"); you may not use this SMF modification except in compliance with
- * the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
-
  
 [color=purple][b][size=12pt]Settings[/size][/b][/color]
 
@@ -39,6 +31,11 @@ This information is then used to create the bar.
 
 
 [color=purple][b][size=12pt]Changelog[/size][/b][/color]
+[code]
+2.1 June 2015
+- Changed license to MPL 2.0
+- Uses Ohara helper library
+- Removes hook specific files in favour of xml based tags
 
 2.0 June 2014
 - Compatibility with SMF 2.1 only.
@@ -78,3 +75,4 @@ $ Older version of SMF 2.0 are no longer supported, nor is the old default theme
 * Added support for SMF 1.1.x.
 1.0 | 29 June 2009
 $ Created and added to the mod site.
+[/code]
