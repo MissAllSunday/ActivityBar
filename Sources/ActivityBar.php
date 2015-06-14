@@ -151,17 +151,17 @@ class ActivityBar extends Suki\Ohara
 			$user = (int) $user;
 
 		// We already have what we need.
-		if (!empty(self::$_activity[$user]))
-			return self::$_activity[$user];
+		if (!empty(static::$_activity[$user]))
+			return static::$_activity[$user];
 
-		if ((self::$_activity[$user] = cache_get_data($this->name .'_' . $user,
+		if ((static::$_activity[$user] = cache_get_data($this->name .'_' . $user,
 			120)) == null)
 		{
 			// Make sure everything is set. If something is missing, use a default value.
 			$maxWidth = $this->enable('max_width') ? $this->setting('max_width') : 139;
 			$maxPosts = $this->enable('max_posts') ? $this->setting('max_posts') : 500;
 			$days = $this->enable('timeframe') ? $this->setting('timeframe') : 30;
-			self::$_activity[$user] = array();
+			static::$_activity[$user] = array();
 
 			// Calculate the starting date.
 			$startingDate = time() - ($days * 86400);
@@ -189,26 +189,26 @@ class ActivityBar extends Suki\Ohara
 			$barWidth = $maxWidth * $numPosts;
 
 			// Store the result in a array.
-			self::$_activity[$user] = array(
+			static::$_activity[$user] = array(
 				'width' => $barWidth,
 				'percentage' => round($percentage,2),
 				'post' => $numPosts,
 				'realPost' => $posts,
 			);
 
-			cache_put_data($this->name .'_' . $user, self::$_activity[$user], 120);
+			cache_put_data($this->name .'_' . $user, static::$_activity[$user], 120);
 		}
 
 		// There you go. Anything else?
-		return self::$_activity[$user];
+		return static::$_activity[$user];
 	}
 
 	public function getActivity($user = 0)
 	{
-		if ($user && empty(self::$_activity[$user]))
+		if ($user && empty(static::$_activity[$user]))
 			$this->create($user);
 
-		return $user ? self::$_activity[$user] : self::$_activity;
+		return $user ? static::$_activity[$user] : static::$_activity;
 	}
 
 	public function addCss()
