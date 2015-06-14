@@ -18,6 +18,8 @@ class ActivityBar extends Suki\Ohara
 {
 	public $name = __CLASS__;
 	protected static $_activity = array();
+	protected $_fieldPlacement = 0;
+	protected $_fieldLabel = '';
 
 	// Define the hooks we are going to use
 	protected $_availableHooks = array(
@@ -31,6 +33,9 @@ class ActivityBar extends Suki\Ohara
 	public function __construct()
 	{
 		$this->setRegistry();
+
+		$this->_fieldPlacement = $this->enable('placement') && $this->setting('placement') != 0 ? (int) $this->setting('placement') : 0;
+		$this->_fieldLabel = $this->enable('label') ? $this->setting('label') : $this->text('standardlabel');
 	}
 
 	public function addGeneralSettings(&$config_vars)
@@ -66,25 +71,21 @@ class ActivityBar extends Suki\Ohara
 
 	public function addMemberContext(&$data, $user, $display_custom_fields)
 	{
-		// Mod is disabled.
-		if(!$this->setting('enable'))
-			return;
-
-		// If we aren't loading any custom profile field, don't bother.
-		if (empty($display_custom_fields))
+		// Mod is disabled or we aren't loading any custom profile field, don't bother.
+		if(!$this->setting('enable') || empty($display_custom_fields))
 			return;
 
 		loadTemplate($this->name);
 
 		// Get this user's activity.
-		$activity = $this->create($user);
+		$activity = $this->getActivity($user);
 
 		// Append some vars.
-		$activity['placement'] = $this->enable('placement') && $this->setting('placement') != 0 ? (int) $this->setting('placement') : 0;
-		$activity['label'] = $this->setting('label') ? $this->setting('label') : $this->text('standardlabel');
+		$activity['placement'] = $this->_fieldPlacement;
+		$activity['label'] = $this->_fieldLabel;
 
 		// Append the data. Cheating, I'm gonna use a string key to make it easier for me to recognize this little buddy later...
-		$data['custom_fields']['Activity'] = array(
+		$data['custom_fields'][] = array(
 			'title' => $activity['label'],
 			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
 			'value' => template_activity_display($activity),
@@ -96,13 +97,21 @@ class ActivityBar extends Suki\Ohara
 
 	public function addDisplayContext(&$output, &$message)
 	{
-		// Mod is disabled.
-		if(!$this->setting('enable'))
+		global $context;
+
+		// Mod is disabled or the user does want to show this field on users posts.
+		if(!$this->enable('enable') || $this->enable('show_in_posts'))
 			return;
 
-		// So yeah, lets use our own little cheat... and lots and lots of empty checks!!!
-		if(!$this->setting('show_in_posts') && !empty($output['member']) && !empty($output['member']['custom_fields']) && !empty($output['member']['custom_fields']['Activity']))
-			unset($output['member']['custom_fields']['Activity']);
+		// This is going to be awkward... need to know the placement to properly unset our field...
+		$placement = $context['cust_profile_fields_placement'][$this->_fieldPlacement];
+
+		$fieldArray = $output['custom_fields'][$placement];
+
+		if (!empty($fieldArray))
+			foreach ($output['custom_fields'][$placement] as $k => $v)
+				if ($v['title'] == $this->_fieldLabel)
+					unset($output['custom_fields'][$placement][$k]);
 	}
 
 	public function addProfile($memID, $area)
@@ -196,7 +205,7 @@ class ActivityBar extends Suki\Ohara
 
 	public function getActivity($user = 0)
 	{
-		if ($user && !isset(self::$_activity[$user]))
+		if ($user && empty(self::$_activity[$user]))
 			$this->create($user);
 
 		return $user ? self::$_activity[$user] : self::$_activity;
