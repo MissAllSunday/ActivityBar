@@ -131,8 +131,8 @@ class ActivityBar extends Suki\Ohara
 			loadTemplate($this->name);
 
 			$context['custom_fields'][] = array(
-				'name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
-				'placement' => 0,
+				'name' => $this->_fieldLabel,
+				'placement' => $this->_fieldPlacement,
 				'output_html' => template_activity_profile($activity),
 				'show_reg' => false,
 			);
