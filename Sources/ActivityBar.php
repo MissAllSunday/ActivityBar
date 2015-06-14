@@ -126,7 +126,7 @@ class ActivityBar extends Suki\Ohara
 		if ($area == 'summary' && $this->setting('show_in_profile'))
 		{
 			// Get this user's activity.
-			$activity = $this->create($memID);
+			$activity = $this->getActivity($memID);
 
 			loadTemplate($this->name);
 
@@ -149,10 +149,6 @@ class ActivityBar extends Suki\Ohara
 
 		else
 			$user = (int) $user;
-
-		// We already have what we need.
-		if (!empty(static::$_activity[$user]))
-			return static::$_activity[$user];
 
 		if ((static::$_activity[$user] = cache_get_data($this->name .'_' . $user,
 			120)) == null)
