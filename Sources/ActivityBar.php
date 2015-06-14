@@ -21,7 +21,7 @@ class ActivityBar extends Suki\Ohara
 	protected $_fieldPlacement = 0;
 	protected $_fieldLabel = '';
 
-	// Define the hooks we are going to use
+	// Define the hooks we are going to use.
 	protected $_availableHooks = array(
 		'memberContext' => 'integrate_member_context',
 		'generalSettings' => 'integrate_general_mod_settings',
@@ -84,7 +84,7 @@ class ActivityBar extends Suki\Ohara
 		$activity['placement'] = $this->_fieldPlacement;
 		$activity['label'] = $this->_fieldLabel;
 
-		// Append the data. Cheating, I'm gonna use a string key to make it easier for me to recognize this little buddy later...
+		// Append the data.
 		$data['custom_fields'][] = array(
 			'title' => $activity['label'],
 			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
@@ -123,7 +123,7 @@ class ActivityBar extends Suki\Ohara
 			return;
 
 		// Eww, why do I need to abuse global scope like this... gross :(
-		if ($area == 'summary' && $this->setting('show_in_profile'))
+		if ($area == 'summary' && $this->enable('show_in_profile'))
 		{
 			// Get this user's activity.
 			$activity = $this->getActivity($memID);
