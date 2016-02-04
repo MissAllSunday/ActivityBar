@@ -22,15 +22,6 @@ class ActivityBar extends Suki\Ohara
 	protected $_fieldLabel = '';
 	protected $_useConfig = true;
 
-	// Define the hooks we are going to use.
-	protected $_availableHooks = array(
-		'memberContext' => 'integrate_member_context',
-		'generalSettings' => 'integrate_general_mod_settings',
-		'displayContext' => 'integrate_prepare_display_context',
-		'profile' => 'integrate_load_custom_profile_fields',
-		'css' => 'integrate_load_theme',
-	);
-
 	public function __construct()
 	{
 		$this->setRegistry();
