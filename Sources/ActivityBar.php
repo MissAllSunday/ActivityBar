@@ -20,6 +20,7 @@ class ActivityBar extends Suki\Ohara
 	protected static $_activity = array();
 	protected $_fieldPlacement = 0;
 	protected $_fieldLabel = '';
+	protected $_useConfig = true;
 
 	// Define the hooks we are going to use.
 	protected $_availableHooks = array(
