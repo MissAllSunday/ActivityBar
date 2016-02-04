@@ -35,13 +35,14 @@ class ActivityBar extends Suki\Ohara
 		global $txt;
 
 		$config_vars[] = $this->text('modName');
-		$config_vars[] = array('check', $this->name .'_enable', 'subtext' => $this->text('enable_sub'));
+		$config_vars[] = array('check', $this->name .'_master', 'subtext' => $this->text('master_sub'));
 		$config_vars[] = array('check', $this->name .'_show_in_posts', 'subtext' => $this->text('show_in_posts_sub'));
 		$config_vars[] = array('check', $this->name .'_show_in_profile', 'subtext' => $this->text('show_in_profile_sub'));
 		$config_vars[] = array('text', $this->name .'_label', 'subtext' => $this->text('label_sub'));
 		$config_vars[] = array('int', $this->name .'_timeframe', 'subtext' => $this->text('timeframe_sub'));
 		$config_vars[] = array('int', $this->name .'_max_posts', 'subtext' => $this->text('max_posts_sub'));
 		$config_vars[] = array('int', $this->name .'_max_width', 'subtext' => $this->text('max_width_sub'));
+		$config_vars[] = array('check', $this->name .'_colors', 'subtext' => $this->text('colors_sub'));
 
 		// Option to select the placement.
 		$config_vars[] = array('select', $this->name .'_placement',
@@ -64,7 +65,7 @@ class ActivityBar extends Suki\Ohara
 	public function addMemberContext(&$data, $user, $display_custom_fields)
 	{
 		// Mod is disabled or we aren't loading any custom profile field, don't bother.
-		if(!$this->setting('enable') || empty($display_custom_fields))
+		if(!$this->enable('master') || empty($display_custom_fields))
 			return;
 
 		loadTemplate($this->name);
@@ -92,7 +93,7 @@ class ActivityBar extends Suki\Ohara
 		global $context;
 
 		// Mod is disabled or the user does want to show this field on users posts.
-		if(!$this->enable('enable') || $this->enable('show_in_posts'))
+		if(!$this->enable('master') || $this->enable('show_in_posts'))
 			return;
 
 		// This is going to be awkward... need to know the placement to properly unset our field...
@@ -111,7 +112,7 @@ class ActivityBar extends Suki\Ohara
 		global $context;
 
 		// Mod is disabled.
-		if(!$this->setting('enable'))
+		if(!$this->enable('master'))
 			return;
 
 		// Eww, why do I need to abuse global scope like this... gross :(
@@ -173,15 +174,30 @@ class ActivityBar extends Suki\Ohara
 			// Calculate everything.
 			$numPosts = $posts / $maxPosts;
 			$numPosts = $numPosts > 1 ? 1 : $numPosts;
-			$percentage = $numPosts * 100;
+			$percentage = round(($numPosts * 100), 2);
 			$barWidth = $maxWidth * $numPosts;
+			$color = 'blue';
+
+			// Which color should we use?
+			if ($this->enable('colors'))
+			{
+				if ($percentage <= 33)
+					$color = 'green';
+
+				elseif ($percentage >= 34 && $percentage <= 66)
+					$color = 'yellow';
+
+				else
+					$color = 'red';
+			}
 
 			// Store the result in a array.
 			static::$_activity[$user] = array(
 				'width' => $barWidth,
-				'percentage' => round($percentage,2),
+				'percentage' => $percentage,
 				'post' => $numPosts,
 				'realPost' => $posts,
+				'color' => $color,
 			);
 
 			cache_put_data($this->name .'_' . $user, static::$_activity[$user], 120);
@@ -197,11 +213,5 @@ class ActivityBar extends Suki\Ohara
 			$this->create($user);
 
 		return $user ? static::$_activity[$user] : static::$_activity;
-	}
-
-	public function addCss()
-	{
-		// The much needed css file. Load it fom the default theme.
-		loadCSSFile('activity.css', array('force_current' => false, 'validate' => true));
 	}
 }

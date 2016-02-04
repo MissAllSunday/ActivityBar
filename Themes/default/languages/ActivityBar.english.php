@@ -3,8 +3,8 @@
 global $txt;
 
 $txt['ActivityBar_standardlabel'] = 'Activity';
-$txt['ActivityBar_enable'] = 'Enable activity bar';
-$txt['ActivityBar_enable_sub'] = 'The master setting, needs to be on for the mod to work properly.';
+$txt['ActivityBar_master'] = 'Enable activity bar';
+$txt['ActivityBar_master_sub'] = 'The master setting, needs to be on for the mod to work properly.';
 $txt['ActivityBar_label'] = 'Bar label';
 $txt['ActivityBar_label_sub'] = 'A label displayed along with the bar. Default is "'.$txt['ActivityBar_standardlabel'].'".';
 $txt['ActivityBar_timeframe'] = 'Activity Timeframe';
@@ -20,3 +20,9 @@ $txt['ActivityBar_max_width_sub'] = 'Bar width. When the post limit set above is
 $txt['ActivityBar_placement'] = 'Placement';
 $txt['ActivityBar_placement_sub'] = 'The place where the activity bar will be show.';
 $txt['ActivityBar_modName'] = 'Activity Bar';
+$txt['ActivityBar_colors'] = 'Use colors';
+$txt['ActivityBar_colors_sub'] = 'If enable,the mod will show a different bar color depending on the percentage:<br>
+0 to 33% : green<br>
+34 to 66% : yellow<br>
+more than 67% : red<br>
+If disable the mod will show the standard blue bar.';

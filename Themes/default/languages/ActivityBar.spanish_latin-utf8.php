@@ -3,8 +3,8 @@
 global $txt;
 
 $txt['ActivityBar_standardlabel'] = 'Actividad';
-$txt['ActivityBar_enable'] = 'Activar la barra de actividad';
-$txt['ActivityBar_enable_sub'] = 'Una barra que permite saber que tán activo a estado un usuario en un determinado tiempo.';
+$txt['ActivityBar_master'] = 'Activar la barra de actividad';
+$txt['ActivityBar_master_sub'] = 'Una barra que permite saber que tán activo a estado un usuario en un determinado tiempo.';
 $txt['ActivityBar_label'] = 'Etiqueta de la barra';
 $txt['ActivityBar_label_sub'] = 'Una etiqueta que será mostrará junto con la barra. Default es: "'. $txt['ActivityBar_standardlabel'];
 $txt['ActivityBar_timeframe'] = 'Marco de tiempo';
@@ -20,3 +20,10 @@ $txt['ActivityBar_max_width_sub'] = 'En pixels. Déjalo vacio para usar el valor
 $txt['ActivityBar_placement'] = 'Mostrar';
 $txt['ActivityBar_placement_sub'] = 'El lugar en donde se mostrará; la actividad.';
 $txt['ActivityBar_modName'] = 'Activity Bar';
+$txt['ActivityBar_colors'] = 'Usar colores';
+$txt['ActivityBar_colors_sub'] = 'Si se activa, el mod mostrará la barra de un color diferente dependiendo del porcentaje de actividad de cada usuario:<br>
+0 a 33% : verde<br>
+34 a 66% : amarillo<br>
+más de 67% : rojo<br>
+Si se deja desactivada el mod usará el color azul estándar.';
+

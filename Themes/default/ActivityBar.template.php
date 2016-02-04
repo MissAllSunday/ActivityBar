@@ -19,7 +19,7 @@ function template_activity_profile($activity)
 	$template = '';
 
 	$template .='
-			<div class="activityBar blue stripes" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
+			<div class="progressBar progress_'. $activity['color'] .'" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
 				<span style="width: '. $activity['width'] .'%;" title="'. $activity['percentage'] .'%"></span>
 			</div>';
 
@@ -40,7 +40,7 @@ function template_activity_display($activity)
 
 	$template .='
 			'. $label .'
-			<div class="activityBar blue stripes" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
+			<div class="progressBar progress_'. $activity['color'] .'" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
 				<span style="width: '. $activity['width'] .'%;" title="'. $activity['percentage'] .'%"></span>
 			</div>';
 
