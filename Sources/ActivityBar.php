@@ -138,13 +138,13 @@ class ActivityBar extends Suki\Ohara
 
 		// Meh...
 		if (empty($user))
-			return false;
+			return array();
 
 		else
 			$user = (int) $user;
 
 		if ((static::$_activity[$user] = cache_get_data($this->name .'_' . $user,
-			120)) == null)
+			240)) == null)
 		{
 			// Make sure everything is set. If something is missing, use a default value.
 			$maxWidth = $this->enable('max_width') ? $this->setting('max_width') : 139;
@@ -200,7 +200,7 @@ class ActivityBar extends Suki\Ohara
 				'color' => $color,
 			);
 
-			cache_put_data($this->name .'_' . $user, static::$_activity[$user], 120);
+			cache_put_data($this->name .'_' . $user, static::$_activity[$user], 240);
 		}
 
 		// There you go. Anything else?
