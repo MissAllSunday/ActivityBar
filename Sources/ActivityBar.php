@@ -11,16 +11,15 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
-// Use Ohara! manually :(
-require_once ($sourcedir .'/ohara/src/Suki/Ohara.php');
+use Suki\Ohara;
 
-class ActivityBar extends Suki\Ohara
+class ActivityBar extends \Suki\Ohara
 {
 	public $name = __CLASS__;
 	protected static $_activity = array();
 	protected $_fieldPlacement = 0;
 	protected $_fieldLabel = '';
-	protected $_useConfig = true;
+	public $useConfig = true;
 
 	public function __construct()
 	{
