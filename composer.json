@@ -1,6 +1,6 @@
 {
 	"name": "suki/activitybar",
 	"require": {
-		"suki/ohara": "~1.0"
+		"suki/ohara": "dev-master"
 	}
 }

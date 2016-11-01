@@ -29,11 +29,5 @@ $_config = array(
 // All good.
 updateSettings(array('_configActivityBar' => json_encode($_config)));
 
-// Insert our very own version of composer autoload feature.
-add_integration_function(array(
-	'integrate_pre_include' => '$sourcedir/ohara/src/Suki/autoload.php',
-));
-
-
 if (SMF == 'SSI')
 	echo 'Database changes are complete!';

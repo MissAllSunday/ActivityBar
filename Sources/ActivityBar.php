@@ -16,7 +16,7 @@ use Suki\Ohara;
 class ActivityBar extends \Suki\Ohara
 {
 	public $name = __CLASS__;
-	protected static $_activity = array();
+	protected $_activity = array();
 	protected $_fieldPlacement = 0;
 	protected $_fieldLabel = '';
 	public $useConfig = true;
@@ -137,19 +137,18 @@ class ActivityBar extends \Suki\Ohara
 
 		// Meh...
 		if (empty($user))
-			return array();
+			return $this->_activity[(int) $user];
 
 		else
 			$user = (int) $user;
 
-		if ((static::$_activity[$user] = cache_get_data($this->name .'_' . $user,
-			240)) == null)
+		if (($this->_activity[$user] = cache_get_data($this->name .'_' . $user,
+			300)) == null)
 		{
 			// Make sure everything is set. If something is missing, use a default value.
-			$maxWidth = $this->enable('max_width') ? $this->setting('max_width') : 139;
-			$maxPosts = $this->enable('max_posts') ? $this->setting('max_posts') : 500;
-			$days = $this->enable('timeframe') ? $this->setting('timeframe') : 30;
-			static::$_activity[$user] = array();
+			$maxWidth = $this->setting('max_width', 139);
+			$maxPosts = $this->setting('max_posts', 500);
+			$days = $this->setting('timeframe', 30);
 
 			// Calculate the starting date.
 			$startingDate = time() - ($days * 86400);
@@ -191,7 +190,7 @@ class ActivityBar extends \Suki\Ohara
 			}
 
 			// Store the result in a array.
-			static::$_activity[$user] = array(
+			$this->_activity[$user] = array(
 				'width' => $barWidth,
 				'percentage' => $percentage,
 				'post' => $numPosts,
@@ -199,18 +198,18 @@ class ActivityBar extends \Suki\Ohara
 				'color' => $color,
 			);
 
-			cache_put_data($this->name .'_' . $user, static::$_activity[$user], 240);
+			cache_put_data($this->name .'_' . $user, $this->_activity[$user], 300);
 		}
 
 		// There you go. Anything else?
-		return static::$_activity[$user];
+		return $this->_activity[$user];
 	}
 
 	public function getActivity($user = 0)
 	{
-		if ($user && empty(static::$_activity[$user]))
-			$this->create($user);
+		// Let create() to handle the checks.
+		$this->create($user);
 
-		return $user ? static::$_activity[$user] : static::$_activity;
+		return $user ? $this->_activity[$user] : $this->_activity;
 	}
 }
