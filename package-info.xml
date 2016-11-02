@@ -33,5 +33,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 		<remove-file name="$languagedir/ActivityBar.spanish_latin-utf8.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_es.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_es-utf8.php" />
+		<remove-file name="$languagedir/ActivityBar.russian.php" />
+		<remove-file name="$languagedir/ActivityBar.russian-utf8.php" />
 	</uninstall>
 </package-info>
