@@ -11,6 +11,9 @@
 if (!defined('SMF'))
 	die('No direct access...');
 
+// Ohara autoload!
+require_once $sourcedir .'/ohara/src/Suki/autoload.php';
+
 use Suki\Ohara;
 
 class ActivityBar extends \Suki\Ohara

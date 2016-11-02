@@ -14,7 +14,6 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 		</license>
 		<code>configInstall.php</code>
-		<hook hook="integrate_pre_include" file="$sourcedir/ohara/src/Suki/autoload.php" ></hook>
 		<hook function="ActivityBar::runTimeHooks" hook="integrate_load_theme" file="$sourcedir/ActivityBar.php" object="true"></hook>
 		<credits url="http://missallsunday.com" license="MPL 2.0" copyright="Suki" licenseurl="https://www.mozilla.org/MPL/2.0/">Activity bar mod</credits>
 		<require-dir name="Sources/ohara" destination="$sourcedir">Source library</require-dir>
