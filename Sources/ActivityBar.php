@@ -28,8 +28,8 @@ class ActivityBar extends \Suki\Ohara
 	{
 		$this->setRegistry();
 
-		$this->_fieldPlacement = $this->enable('placement') && $this->setting('placement') != 0 ? (int) $this->setting('placement') : 0;
-		$this->_fieldLabel = $this->enable('label') ? $this->setting('label') : $this->text('standardlabel');
+		$this->_fieldPlacement = $this->setting('placement', 0);
+		$this->_fieldLabel = $this->setting('label', $this->text('standardlabel'));
 	}
 
 	public function addGeneralSettings(&$config_vars)
@@ -82,7 +82,7 @@ class ActivityBar extends \Suki\Ohara
 		// Append the data.
 		$data['custom_fields'][] = array(
 			'title' => $activity['label'],
-			'col_name' => $this->setting('label') ? $this->setting('label') : $this->text('standardlabel'),
+			'col_name' => $activity['placement'],
 			'value' => template_activity_display($activity),
 			'placement' => $activity['placement'],
 		);
