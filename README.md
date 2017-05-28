@@ -1,14 +1,13 @@
-[center][color=purple][size=5][b]Activity Bar [/b][/size][/color]
-[b]Author:[/b] [url=http://missallsunday.com]Suki[/url][/center]
+# Activity Bar
 
 
-Original idea and original developer: [url=http://www.simplemachines.org/community/index.php?action=profile;u=143954]Nas[/url]
+Original idea and original developer: [Nas](http://www.simplemachines.org/community/index.php?action=profile;u=143954)
 
-[color=purple][b][size=12pt]Description[/size][/b][/color]
+### Description
 
-[b]For SMF 2.1.x only[/b]
+**For SMF 2.1.x only**
 
-[i]Activity Bar[/i] displays a bar in posts and/or profiles, showing how active the user is.
+_Activity Bar_ displays a bar in posts and/or profiles, showing how active the user is.
 The admin can choose where to display it (Posts, Profile or both), max width, how many posts that are required for a full bar, and the timeframe in which posts are counted.
 Can be fully customized via CSS.
 
@@ -19,19 +18,20 @@ It then figures out how much of the bar should be filled, by multiplying the res
 This information is then used to create the bar.
 
 
-[color=purple][b][size=12pt]Settings[/size][/b][/color]
+### Settings
 
 - Admin > Configuration > Modifications
 
 
-[color=purple][b][size=12pt]Languages[/size][/b][/color]
+### Languages
 
 - English/utf8
 - Spanish/utf8
 
 
-[color=purple][b][size=12pt]Changelog[/size][/b][/color]
-[code]
+### Changelog
+
+```
 2.1 June 2015
 - Changed license to MPL 2.0
 - Uses Ohara helper library
@@ -75,4 +75,4 @@ $ Older version of SMF 2.0 are no longer supported, nor is the old default theme
 * Added support for SMF 1.1.x.
 1.0 | 29 June 2009
 $ Created and added to the mod site.
-[/code]
+```
