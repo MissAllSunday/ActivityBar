@@ -56,6 +56,8 @@ class ActivityBar extends \Suki\Ohara
 				$txt['custom_profile_placement_below_avatar'],
 				$txt['custom_profile_placement_above_member'],
 				$txt['custom_profile_placement_bottom_poster'],
+				$txt['custom_profile_placement_before_member'],
+				$txt['custom_profile_placement_after_member'],
 			),
 			'subtext' => $this->text('placement_sub'),
 			'multiple' => false,
