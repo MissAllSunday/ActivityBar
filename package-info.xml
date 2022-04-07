@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<!DOCTYPE package-info SYSTEM "https://www.simplemachines.org/xml/package-info">
 
-<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
-	<id>Suki:ActivityBar</id>
+<package-info xmlns="https://www.simplemachines.org/xml/package-info" xmlns:smf="https://www.simplemachines.org/">
+	<id>Suki:Activity_Bar</id>
 	<name>Activity Bar</name>
 	<version>2.0</version>
 	<type>modification</type>
