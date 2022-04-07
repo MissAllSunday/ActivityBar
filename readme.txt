@@ -21,17 +21,26 @@ This information is then used to create the bar.
 
 [color=purple][b][size=12pt]Settings[/size][/b][/color]
 
-- Admin > Configuration > Modifications
+- Admin > Configuration > Modification Settings > Miscellaneous
 
 
 [color=purple][b][size=12pt]Languages[/size][/b][/color]
 
-- English/utf8
-- Spanish/utf8
+- English
+- Spanish
+- Russian
 
 
 [color=purple][b][size=12pt]Changelog[/size][/b][/color]
 [code]
+2.0 April 2022
+- Use SMF's bar css style for bar colors
+- Remove Ohara library
+- Remove old dependencies
+- PHP 7.4 or above support
+- Remove utf-8 language files
+- Clean up template functions
+
 2.1 June 2015
 - Changed license to MPL 2.0
 - Uses Ohara helper library

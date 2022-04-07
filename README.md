@@ -20,27 +20,36 @@ This information is then used to create the bar.
 
 ### Settings
 
-- Admin > Configuration > Modifications
+- Admin > Configuration > Modification Settings > Miscellaneous
 
 
 ### Languages
 
-- English/utf8
-- Spanish/utf8
+- English
+- Spanish
+- Russian
 
 
 ### Changelog
 
 ```
-2.1 June 2015
+2.0 April 2022
+- Use SMF's bar css style for bar colors
+- Remove Ohara library
+- Remove old dependencies
+- PHP 7.4 or above support
+- Remove utf-8 language files
+- Clean up template functions
+
+2.0 beta June 2015
 - Changed license to MPL 2.0
 - Uses Ohara helper library
 - Removes hook specific files in favour of xml based tags
 
-2.0 June 2014
+2.0 alpha June 2014
 - Compatibility with SMF 2.1 only.
 - No more file edits.
-- CSS3 CSS3 progress bars thanks to http://red-team-design.com/stylish-css3-progress-bars/
+- CSS3 CSS3 progress bars thanks to https://red-team-design.com/stylish-css3-progress-bars/
 - All css moved to activity.css
 - Select the position to show the bar on the Display page.
 - Fixed some minor bugs.

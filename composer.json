@@ -1,6 +1,19 @@
 {
 	"name": "suki/activitybar",
+	"type": "smf-module",
+	"description": "SMF modification. Displays a bar in posts and/or profiles, showing how active the user is",
+	"keywords": ["SMF","modifications", "Social"],
+	"homepage": "https://github.com/MissAllSunday/ActivityBar",
+	"license": "MPL-2.0",
+	"authors": [
+		{
+			"name": "Michel Mendiola",
+			"email": "suki@missallsunday.com",
+			"homepage": "https://missallsunday.com",
+			"role": "Developer"
+		}
+	],
 	"require": {
-		"suki/ohara": "dev-master"
+		"php": ">=7.4.0"
 	}
 }

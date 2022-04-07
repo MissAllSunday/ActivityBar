@@ -6,35 +6,28 @@
 	<name>Activity Bar</name>
 	<version>2.0</version>
 	<type>modification</type>
-	<install for="2.1 Beta 3, 2.1 Beta 4, 2.1 RC 1, 2.1 RC 2, 2.1 - 2.1.99">
+	<install for="2.1 - 2.1.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<license type="inline" parsebbc="false">
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
 		</license>
-		<code>configInstall.php</code>
-		<hook function="ActivityBar::runTimeHooks" hook="integrate_load_theme" file="$sourcedir/ActivityBar.php" object="true"></hook>
-		<credits url="http://missallsunday.com" license="MPL 2.0" copyright="Suki" licenseurl="https://www.mozilla.org/MPL/2.0/">Activity bar mod</credits>
-		<require-dir name="Sources/ohara" destination="$sourcedir">Source library</require-dir>
-		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles everything</require-file>
-		<require-dir name="vendor" destination="$boarddir">vendor folder</require-dir>
-		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
+		<code>hooks.php</code>
+		<credits url="https://missallsunday.com" license="MPL 2.0" copyright="Suki" licenseurl="https://www.mozilla.org/MPL/2.0/">Activity bar mod</credits>
+		<require-file name="Sources/ActivityBar.php" destination="$sourcedir">The file that handles all the mod's logic</require-file>
+		<require-dir name="Themes" destination="$boarddir">Theme and language files</require-dir>
 		<redirect url="$scripturl?action=admin;area=modsettings;sa=general" timeout="3000"></redirect>
 	</install>
 
-	<uninstall for="2.1 Beta 3, 2.1 Beta 4, 2.1 RC 1, 2.1 RC 2, 2.1 - 2.1.99">
+	<uninstall for="2.1 - 2.1.99">
+		<code>hooks.php</code>
 		<readme type="inline">This will uninstall the Activity Bar mod. Thank you for using this mod.</readme>
-		<hook function="ActivityBar::runTimeHooks" hook="integrate_load_theme" file="$sourcedir/ActivityBar.php" object="true" reverse="true"></hook>
 		<remove-file name="$sourcedir/ActivityBar.php" />
 		<remove-file name="$themedir/ActivityBar.template.php" />
 		<remove-file name="$languagedir/ActivityBar.english.php" />
-		<remove-file name="$languagedir/ActivityBar.english-utf8.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_latin.php" />
-		<remove-file name="$languagedir/ActivityBar.spanish_latin-utf8.php" />
 		<remove-file name="$languagedir/ActivityBar.spanish_es.php" />
-		<remove-file name="$languagedir/ActivityBar.spanish_es-utf8.php" />
 		<remove-file name="$languagedir/ActivityBar.russian.php" />
-		<remove-file name="$languagedir/ActivityBar.russian-utf8.php" />
 	</uninstall>
 </package-info>

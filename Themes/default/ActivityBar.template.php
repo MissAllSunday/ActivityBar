@@ -1,48 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * @package Activity Bar mod
  * @version 2.0
- * @author Jessica González <suki@missallsunday.com>
- * @copyright Copyright (c) 2015, Jessica González
+ * @author Michel Mendiola <suki@missallsunday.com>
+ * @copyright Copyright (c), Michel Mendiola
  * @license http://www.mozilla.org/MPL/ MPL 2.0
  */
 
-function template_activity_profile($activity)
+function template_activity_display(array $activity): string
 {
-	global $txt, $modSettings;
+	if (empty($activity))
+		return '';
 
-	if (empty($activity) || !is_array($activity))
-		return false;
-
-	$width = !empty($modSettings['ActivityBar_max_width']) ? (int) $modSettings['ActivityBar_max_width'] : 139;
-	$template = '';
-
-	$template .='
-			<div class="progressBar progress_'. $activity['color'] .'" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
-				<span style="width: '. $activity['width'] .'%;" title="'. $activity['percentage'] .'%"></span>
-			</div>';
-
-	return $template;
-}
-
-function template_activity_display($activity)
-{
-	global $txt, $modSettings;
-
-	if (empty($activity) || !is_array($activity))
-		return false;
-
-	// Don't show the label if the placement is "standard with title".
-	$label = !empty($activity['placement']) && $activity['placement'] != 0 ? $activity['label'] .':' : '';
-	$width = !empty($modSettings['ActivityBar_max_width']) ? (int) $modSettings['ActivityBar_max_width'] : 139;
-	$template = '';
-
-	$template .='
-			'. $label .'
-			<div class="progressBar progress_'. $activity['color'] .'" style="width:'. $width .'px;" title="'. $activity['percentage'] .'%">
-				<span style="width: '. $activity['width'] .'%;" title="'. $activity['percentage'] .'%"></span>
-			</div>';
-
-	return $template;
+    return '
+        <div 
+            id="progress_bar" 
+            class="progress_bar progress_'  . $activity['color'] . '"
+            style="max-width:' . $activity['maxWidth'] . 'px;"
+            title="' . $activity['title'] .'">
+            <span id="overall_text">
+                ' . $activity['overallText'] .'
+            </span>
+            <span 
+                id="overall_progress" 
+                class="bar" 
+                style="width: ' . $activity['percentage'] . '%;" />
+        </div>
+    ';
 }
