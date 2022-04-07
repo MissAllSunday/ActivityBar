@@ -1,8 +1,8 @@
 [center][color=purple][size=5][b]Activity Bar [/b][/size][/color]
-[b]Author:[/b] [url=http://missallsunday.com]Suki[/url][/center]
+[b]Author:[/b] [url=https://missallsunday.com]Suki[/url][/center]
 
 
-Original idea and original developer: [url=http://www.simplemachines.org/community/index.php?action=profile;u=143954]Nas[/url]
+Original idea and original developer: [url=https://www.simplemachines.org/community/index.php?action=profile;u=143954]Nas[/url]
 
 [color=purple][b][size=12pt]Description[/size][/b][/color]
 
