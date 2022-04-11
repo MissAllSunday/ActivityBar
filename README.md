@@ -33,6 +33,9 @@ This information is then used to create the bar.
 ### Changelog
 
 ```
+2.0.1 April 2022
+- Change logic when displaying the bar on profile pages
+
 2.0 April 2022
 - Use SMF's bar css style for bar colors
 - Remove Ohara library

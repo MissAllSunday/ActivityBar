@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * @package Activity Bar mod
- * @version 2.0
+ * @version 2.0.1
  * @author Michel Mendiola <suki@missallsunday.com>
  * @copyright Copyright (c), Michel Mendiola
  * @license http://www.mozilla.org/MPL/ MPL 2.0
@@ -15,18 +15,18 @@ if (!defined('SMF'))
 
 class ActivityBar
 {
-    protected  const CACHE_TIME = 900;
-    protected const MAX_POSTS = 500;
-    protected const MAX_WIDTH = 139;
-    protected const DAYS = 30;
-    protected const DEFAULT_COLOR = 'blue';
+	protected  const CACHE_TIME = 900;
+	protected const MAX_POSTS = 500;
+	protected const MAX_WIDTH = 139;
+	protected const DAYS = 30;
+	protected const DEFAULT_COLOR = 'blue';
 
-    public string $name = __CLASS__;
-    protected array $activity = [];
-    protected string $fieldLabel = '';
-    protected int $fieldPlacement = 0;
+	public string $name = __CLASS__;
+	protected array $activity = [];
+	protected string $fieldLabel = '';
+	protected int $fieldPlacement = 0;
 
-    public function __construct()
+	public function __construct()
 	{
 		$this->fieldPlacement = (int) $this->setting('placement', 0);
 		$this->fieldLabel = (string) $this->setting('label', $this->text('standardLabel'));
@@ -36,7 +36,7 @@ class ActivityBar
 	{
 		global $txt;
 
-        loadLanguage($this->name);
+		loadLanguage($this->name);
 
 		$config_vars[] = $this->text('modName');
 		$config_vars[] = array('check', $this->name .'_master', 'subtext' => $this->text('master_sub'));
@@ -70,7 +70,7 @@ class ActivityBar
 
 	public function addMemberContext(array &$data, $user, $display_custom_fields)
 	{
-        $user = (int) $user;
+		$user = (int) $user;
 
 		// Mod is disabled, or we aren't loading any custom profile field, don't bother.
 		if(!$this->setting('master') || empty($display_custom_fields))
@@ -92,23 +92,23 @@ class ActivityBar
 		unset($activity);
 	}
 
-    public function addDisplayContext(&$output, &$message): void
-    {
-        global $context;
+	public function addDisplayContext(&$output, &$message): void
+	{
+		global $context;
 
-        // Mod is disabled or the user does not want to show this field on users posts.
-        if(!$this->setting('master') ||
-            $this->setting('show_in_posts') ||
-            empty($output['custom_fields']))
-            return;
+		// Mod is disabled or the user does not want to show this field on users posts.
+		if(!$this->setting('master') ||
+			$this->setting('show_in_posts') ||
+			empty($output['custom_fields']))
+			return;
 
-        // This is going to be awkward... need to know the placement to properly unset our field...
-        $placement = $context['cust_profile_fields_placement'][$this->fieldPlacement];
+		// This is going to be awkward... need to know the placement to properly unset our field...
+		$placement = $context['cust_profile_fields_placement'][$this->fieldPlacement];
 
-        foreach ($output['custom_fields'][$placement] as $key => $value)
-            if ($value['title'] === $this->fieldLabel)
-                unset($output['custom_fields'][$placement][$key]);
-    }
+		foreach ($output['custom_fields'][$placement] as $key => $value)
+			if ($value['title'] === $this->fieldLabel)
+				unset($output['custom_fields'][$placement][$key]);
+	}
 
 	public function addProfile($memID, $area): void
 	{
@@ -116,20 +116,20 @@ class ActivityBar
 
 		// Mod is disabled, or we aren't in summary page and show in profile is disabled
 		if(!$this->setting('master') ||
-            ($area === 'summary' && $this->setting('show_in_profile')))
+			($area !== 'summary' && $this->setting('show_in_profile')))
 			return;
 
-        // Get this user's activity.
-        $activity = $this->getActivity((int) $memID);
+		// Get this user's activity.
+		$activity = $this->getActivity((int) $memID);
 
-        loadTemplate($this->name);
+		loadTemplate($this->name);
 
-        $context['custom_fields'][] = array(
-            'name' => $this->fieldLabel,
-            'placement' => $this->fieldPlacement,
-            'output_html' => template_activity_display($activity),
-            'show_reg' => false,
-        );
+		$context['custom_fields'][] = array(
+			'name' => $this->fieldLabel,
+			'placement' => $this->fieldPlacement,
+			'output_html' => template_activity_display($activity),
+			'show_reg' => false,
+		);
 	}
 
 	public function create(int $user = 0): array
@@ -174,16 +174,16 @@ class ActivityBar
 
 			// Store the result in an array.
 			$this->activity[$user] = [
-                'maxWidth' => $maxWidth,
+				'maxWidth' => $maxWidth,
 				'width' => $barWidth,
 				'percentage' => $percentage,
 				'post' => $numPosts,
 				'realPost' => $posts,
 				'color' => $this->setColor($percentage),
-                'label' => $this->fieldLabel,
-                'overallText' => $this->fieldPlacement === 0 ? '' : ($this->fieldLabel . ' ' . $percentage . '%'),
-                'title' => $this->fieldLabel . ' ' . $percentage . '%',
-                'placement' => $this->fieldPlacement
+				'label' => $this->fieldLabel,
+				'overallText' => $this->fieldPlacement === 0 ? '' : ($this->fieldLabel . ' ' . $percentage . '%'),
+				'title' => $this->fieldLabel . ' ' . $percentage . '%',
+				'placement' => $this->fieldPlacement
 			];
 
 			cache_put_data($this->name .'_' . $user, $this->activity[$user], self::CACHE_TIME);
@@ -193,25 +193,25 @@ class ActivityBar
 		return $this->activity[$user];
 	}
 
-    public function setColor(float $percentage): string
-    {
-        $color = self::DEFAULT_COLOR;
+	public function setColor(float $percentage): string
+	{
+		$color = self::DEFAULT_COLOR;
 
-        // Which color should we use?
-        if ($this->setting('colors'))
-        {
-            if ($percentage <= 33)
-                $color = 'green';
+		// Which color should we use?
+		if ($this->setting('colors'))
+		{
+			if ($percentage <= 33)
+				$color = 'green';
 
-            elseif ($percentage >= 34 && $percentage <= 66)
-                $color = 'yellow';
+			elseif ($percentage >= 34 && $percentage <= 66)
+				$color = 'yellow';
 
-            else
-                $color = 'red';
-        }
+			else
+				$color = 'red';
+		}
 
-        return $color;
-    }
+		return $color;
+	}
 
 	public function getActivity(int $user = 0): array
 	{
@@ -221,17 +221,17 @@ class ActivityBar
 		return $user ? $this->activity[$user] : $this->activity;
 	}
 
-    protected function text(string $textLabel = ''): string
-    {
-        global $txt;
+	protected function text(string $textLabel = ''): string
+	{
+		global $txt;
 
-        return $txt[$this->name . '_' . $textLabel] ?? '';
-    }
+		return $txt[$this->name . '_' . $textLabel] ?? '';
+	}
 
-    protected function setting(string $settingLabel, $defaultValue = false)
-    {
-        global  $modSettings;
+	protected function setting(string $settingLabel, $defaultValue = false)
+	{
+		global  $modSettings;
 
-        return $modSettings[$this->name . '_' . $settingLabel] ?? $defaultValue;
-    }
+		return $modSettings[$this->name . '_' . $settingLabel] ?? $defaultValue;
+	}
 }

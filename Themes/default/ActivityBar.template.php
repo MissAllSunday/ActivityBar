@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * @package Activity Bar mod
- * @version 2.0
+ * @version 2.0.1
  * @author Michel Mendiola <suki@missallsunday.com>
  * @copyright Copyright (c), Michel Mendiola
  * @license http://www.mozilla.org/MPL/ MPL 2.0
